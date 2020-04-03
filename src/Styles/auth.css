@@ -1,0 +1,32 @@
+.authcard {
+    position: absolute;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+#right{
+    float: right;
+}
+
+a.nav-link{
+    color: #343a40;
+}
+
+a.nav-link.active{
+    color : white !important;
+    background-color: #343a40 !important;
+}
