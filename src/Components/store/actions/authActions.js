@@ -74,12 +74,12 @@ export const otherSignUp = (newUser) => {
     }
 }
 
-export const upgrade = () => {
+export const upgrade = (bool) => {
     return (dispatch,getState, {getFirebase, getFirestore}) => {
         const fs = getFirestore();
         const userId = getState().firebase.auth.uid;
         return fs.collection('users').doc(userId).update({
-            premium : true
+            premium : bool
         }).then(() => {
             dispatch({type: 'UPGRADE_SUCCESS'})
         }).catch((err) => {
@@ -87,3 +87,52 @@ export const upgrade = () => {
         })
     }
 }
+
+export const accountUpdate = (user) => {
+    return (dispatch,getState, {getFirebase, getFirestore}) => {
+        const fs = getFirestore();
+        const userId = getState().firebase.auth.uid;
+        return fs.collection('users').doc(userId).update({
+            firstname : user.firstname,
+            lastname : user.lastname,
+            username : user.username,
+        }).then(() => {
+            dispatch({type: 'UPDATE_SUCCESS'})
+        }).catch((err) => {
+            dispatch({type: 'UPDATE_ERROR'}, err)
+        })
+    }
+}
+
+export const paymentUpdate = (user) => {
+    return (dispatch,getState, {getFirebase, getFirestore}) => {
+        const fs = getFirestore();
+        const userId = getState().firebase.auth.uid;
+        return fs.collection('users').doc(userId).update({
+            bankAccountNumber : user.bankAccountNumber,
+            sortCode : user.sortCode,
+        }).then(() => {
+            dispatch({type: 'UPDATE_SUCCESS'})
+        }).catch((err) => {
+            dispatch({type: 'UPDATE_ERROR'}, err)
+        })
+    }
+}
+
+export const idUpdate = (id) => {
+    return (dispatch,getState, {getFirebase, getFirestore}) => {
+        const fs = getFirestore();
+        const userId = getState().firebase.auth.uid;
+        return fs.collection('users').doc(userId).update({
+            idProof : id
+        }).then(() => {
+            dispatch({type: 'UPDATE_SUCCESS'})
+        }).catch((err) => {
+            dispatch({type: 'UPDATE_ERROR'}, err)
+        })
+    }
+}
+
+
+
+

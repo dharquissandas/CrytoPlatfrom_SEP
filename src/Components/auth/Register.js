@@ -143,19 +143,19 @@ class Register extends Component {
 
                                             <Form.Group controlId="idProof">
                                                 <Form.Label>Proof of ID</Form.Label>
-                                                <Form.Control type="text" placeholder="Passport or Driving License Identification Number" onChange={this.handleChange} />
+                                                <Form.Control type="text" minlength="9" maxLength="9" placeholder="Passport Identification Number" onChange={this.handleChange} />
                                             </Form.Group>
 
                                             {this.state.account === "trader" &&
                                                 <Form.Row>
                                                     <Form.Group as={Col} controlId="bankAccountNumber">
                                                     <Form.Label>Bank Number</Form.Label>
-                                                    <Form.Control type="text" maxLength="8" required placeholder="Bank Account Number" onChange={this.handleChange} />
+                                                    <Form.Control type="text" minlength="8" maxLength="8" required placeholder="Bank Account Number" onChange={this.handleChange} />
                                                     </Form.Group>
 
                                                     <Form.Group as={Col} controlId="sortCode">
                                                     <Form.Label>Sort Code</Form.Label>
-                                                    <Form.Control type="text" maxLength="6" required placeholder="Sort Code" onChange={this.handleChange} />
+                                                    <Form.Control type="text" minlength="6" maxLength="6" required placeholder="Sort Code" onChange={this.handleChange} />
                                                     </Form.Group>
                                                 </Form.Row>
                                             }

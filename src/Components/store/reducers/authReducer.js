@@ -1,5 +1,6 @@
 const initState = {
-    authError: null
+    authError: null,
+    emailError : null
 }
 
 const authReducer = (state = initState, action) => {
@@ -16,6 +17,7 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: null
             }
+
         case 'SIGNOUT_SUCCESS':
             console.log('signout success');
             return state;
@@ -33,10 +35,27 @@ const authReducer = (state = initState, action) => {
             }
         case 'UPGRADE_SUCCESS':
             console.log('upgrade success')
-            break
+            return state
         case 'UPGRADE_ERROR':
             console.log('upgrade error')
-            break
+            return state
+        case 'UPDATE_SUCCESS':
+            console.log('update success')
+            return state
+        case 'UPDATE_ERROR':
+            console.log('update error')
+            return state
+        case 'EMAIL_UPDATED':
+            console.log('email update success')
+            return {
+                ...state,
+                emailError : null
+            }
+        case 'EMAIL_ERROR':
+            return {
+                ...state,
+                emailError: action.err.message
+            }
         default:
             return state;
     }

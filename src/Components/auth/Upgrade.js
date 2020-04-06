@@ -42,7 +42,7 @@ export class Upgrade extends Component {
             })
         }
         else{
-            this.props.upgrade()
+            this.props.upgrade(true)
             this.props.onHide()
         }
     }
@@ -76,7 +76,7 @@ export class Upgrade extends Component {
                             <Form.Row>
                                 <Form.Group as={Col} controlId="bankAccountNumber">
                                     <Form.Label>Account Number</Form.Label>
-                                    <Form.Control required type="text" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minLength="8" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="sortCode">
@@ -113,12 +113,10 @@ const mapStateToProps = (state) => {
 }
 
 
-
-
 const mapDispatchToProps = (dispatch) => {
     return {
         updateFiatWallet : (wallet) => dispatch(updateFiatWallet(wallet)) ,
-        upgrade : () => dispatch(upgrade())
+        upgrade : (bool) => dispatch(upgrade(bool))
     }
 }
 

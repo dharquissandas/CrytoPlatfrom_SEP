@@ -11,7 +11,7 @@ export class AddFiatCurrency extends Component {
         amount : "",
         message : "",
         fullAmount: false,
-        error : false
+        check : false
     }
 
     handleChange = (e) => {
@@ -51,12 +51,15 @@ export class AddFiatCurrency extends Component {
 
         if ((this.state.bankAccountNumber === profile.bankAccountNumber) && (this.state.sortCode === profile.sortCode)){
             this.props.updateFiatWallet(info)
-            this.props.onHide()
-        }   
+            this.setState({
+                message: "Refund Successful",
+                check : true
+            })
+        }
         else{
             this.setState({
                 message: "Bank Details Invalid",
-                error : true
+                check : true
             })
         }
     }
@@ -85,16 +88,16 @@ export class AddFiatCurrency extends Component {
                             <br></br>
                             Sort Code : {sc} 
                         </Alert>
-                        <Form autocomplete="off" id="fiatRefund">
+                        <Form autocomplete="off" id="fiatRefund" onSubmit={this.handleSubmit}>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="bankAccountNumber">
                                     <Form.Label>Account Number</Form.Label>
-                                    <Form.Control required type="text" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minLength="8" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="sortCode">
                                     <Form.Label>Sort Code</Form.Label>
-                                    <Form.Control required type="text" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minLength="6" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
                                 </Form.Group>
                             </Form.Row>
                             <Form.Group controlId="fullAmount">
@@ -110,11 +113,17 @@ export class AddFiatCurrency extends Component {
                             </InputGroup>
                             </Form.Group>                     
                         </Form>
-                        {this.state.error ? <span>{this.state.message}</span> : null}
+                        {this.state.check  ? 
+                            this.state.message === "Refund Successful" ?
+                            <Alert variant="success"><div><label>{this.state.message}</label></div></Alert>:
+                            <Alert variant="danger"><div><label>{this.state.message}</label></div></Alert>
+                            :
+                            null
+                        }
                     </Modal.Body>
                     <Modal.Footer>
                         <Form.Group>
-                            <Button form="fiatRefund" type="submit" variant="success" onClick={this.handleSubmit}>Refund</Button>
+                            <Button form="fiatRefund" type="submit" variant="success" >Refund</Button>
                         </Form.Group>
                         <Button onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>

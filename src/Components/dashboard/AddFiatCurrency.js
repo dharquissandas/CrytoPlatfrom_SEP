@@ -39,21 +39,21 @@ export class AddFiatCurrency extends Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form autocomplete="off" id="fiatTransact">
+                        <Form autocomplete="off" id="fiatTransact" onSubmit={this.handleSubmit}>
                             <Form.Group controlId="bankAccountNumber">
                                 <Form.Label>Account Number</Form.Label>
-                                <Form.Control required type="text" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
+                                <Form.Control required type="text" minLength="8" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
                             </Form.Group>
 
                             <Form.Row>
                                 <Form.Group as={Col} controlId="sortCode">
                                     <Form.Label>Sort Code</Form.Label>
-                                    <Form.Control required type="text" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minLength="6" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="Cvv">
                                     <Form.Label>CVV</Form.Label>
-                                    <Form.Control required type="text" maxLength="3" placeholder="CVV" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minLength="3" maxLength="3" placeholder="CVV" onChange={this.handleChange} />
                                 </Form.Group>
                             </Form.Row>
 
@@ -70,7 +70,7 @@ export class AddFiatCurrency extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Form.Group>
-                            <Button form="fiatTransact" type="submit" variant="success" onClick={this.handleSubmit}>Transact</Button>
+                            <Button form="fiatTransact" type="submit" variant="success">Transact</Button>
                         </Form.Group>
                         <Button onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>
