@@ -121,41 +121,41 @@ class Register extends Component {
                                             <Form.Row>
                                                 <Form.Group as={Col} controlId="firstname">
                                                 <Form.Label>First Name</Form.Label>
-                                                <Form.Control type="text" placeholder="First Name" onChange={this.handleChange} />
+                                                <Form.Control type="text" required placeholder="First Name" min="2" onChange={this.handleChange} />
                                                 </Form.Group>
 
                                                 <Form.Group as={Col} controlId="lastname">
                                                 <Form.Label>Last Name</Form.Label>
-                                                <Form.Control type="text" placeholder="Last Name" onChange={this.handleChange} />
+                                                <Form.Control type="text" required placeholder="Last Name" min="2" onChange={this.handleChange} />
                                                 </Form.Group>
                                             </Form.Row>
                                             <Form.Row>
                                                 <Form.Group as={Col} controlId="username">
                                                     <Form.Label>Username</Form.Label>
-                                                    <Form.Control type="text" placeholder="Username" onChange={this.handleChange} />
+                                                    <Form.Control type="text" required placeholder="Username" min="2" onChange={this.handleChange} />
                                                 </Form.Group>
                                                 
                                             <Form.Group as={Col} controlId="email">
                                                 <Form.Label>Email</Form.Label>
-                                                <Form.Control type="email" placeholder="Email" onChange={this.handleChange} />
+                                                <Form.Control type="email" required placeholder="Email" onChange={this.handleChange} />
                                             </Form.Group>
                                             </Form.Row>
 
                                             <Form.Group controlId="idProof">
                                                 <Form.Label>Proof of ID</Form.Label>
-                                                <Form.Control type="text" minlength="9" maxLength="9" placeholder="Passport Identification Number" onChange={this.handleChange} />
+                                                <Form.Control type="text" required pattern="[0-9]{9}" minlength="9" maxLength="9" placeholder="Passport Identification Number" onChange={this.handleChange} />
                                             </Form.Group>
 
                                             {this.state.account === "trader" &&
                                                 <Form.Row>
                                                     <Form.Group as={Col} controlId="bankAccountNumber">
                                                     <Form.Label>Bank Number</Form.Label>
-                                                    <Form.Control type="text" minlength="8" maxLength="8" required placeholder="Bank Account Number" onChange={this.handleChange} />
+                                                    <Form.Control type="text" pattern="[0-9]{8}" minlength="8" maxLength="8" required placeholder="Bank Account Number" onChange={this.handleChange} />
                                                     </Form.Group>
 
                                                     <Form.Group as={Col} controlId="sortCode">
                                                     <Form.Label>Sort Code</Form.Label>
-                                                    <Form.Control type="text" minlength="6" maxLength="6" required placeholder="Sort Code" onChange={this.handleChange} />
+                                                    <Form.Control type="text" pattern="[0-9]{6}" minlength="6" maxLength="6" required placeholder="Sort Code" onChange={this.handleChange} />
                                                     </Form.Group>
                                                 </Form.Row>
                                             }
@@ -163,20 +163,20 @@ class Register extends Component {
                                             {this.state.account === "administrator" &&
                                                 <Form.Group controlId="adminAccessCode">
                                                     <Form.Label>Administrator Access Code</Form.Label>
-                                                    <Form.Control type="text" placeholder="Administrator Access Code" onChange={this.handleChange} />
+                                                    <Form.Control type="text" required placeholder="Administrator Access Code" onChange={this.handleChange} />
                                                 </Form.Group>                                            
                                             }
 
                                             {this.state.account === "analyst" &&
                                                 <Form.Group controlId="analystCertification">
                                                     <Form.Label>Analyst Certification</Form.Label>
-                                                    <Form.Control type="text" placeholder="Analyst Certification" onChange={this.handleChange} />
+                                                    <Form.Control type="text" required placeholder="Analyst Certification" onChange={this.handleChange} />
                                                 </Form.Group>                                            
                                             }
 
                                             <Form.Group controlId="password">
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password"  onChange={this.handleChange} />
+                                                <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
                                                 {authError ? <Alert variant="danger">{authError}</Alert> : null}
