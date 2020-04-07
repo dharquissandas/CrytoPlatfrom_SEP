@@ -9,11 +9,13 @@ const Navigationbar = (props) => {
     const links = auth.uid ? <SignedInLinks profile={props.profile} pass = {props.pass} /> : < SignedOutLinks />
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar fixed="top" bg="dark" variant="dark">
                 <Navbar.Brand href="/">CryptoTrading &amp; Wallet</Navbar.Brand>
                 <Nav className="mr-auto"></Nav>
                 {links}
             </Navbar>
+            <br />
+            <br />
         </div>
     )
 }

@@ -1,34 +1,35 @@
 import React, { Component } from 'react'
-import {Modal, Button, Form, Alert} from 'react-bootstrap';
+import {Card, Button, Form, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Import } from '../store/actions/transactionActions';
+import { Import } from '../../store/actions/transactionActions';
 import FileUploader from 'file-uploader-js';
 
-export class ImportModal extends Component{
+export class ImportWallets extends Component {
+    state = {
+        imported : false
+    }
+
     uploadedJson = (fileData) => {
         let file = JSON.parse(fileData)
         for(let i = 0; i < file.length; i++){
-            // console.log(file[i])
             this.props.import(file[i])
         }
+
+        this.setState({
+            imported : true
+        })
+
+        // this.props.reinitData()
+        window.location.reload()
     }
-    
+
     render() {
         return (
             <div>
-                <Modal
-                {...this.props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            Import Wallet
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h5>Please Import your wallet here</h5>
+                <Card>
+                    <Card.Header as="h6">Import Wallet</Card.Header>
+                    <Card.Body>
+                        <h6>Please Import your wallet</h6>
                         <Alert variant ="dark"> 
                             <FileUploader
                                 accept=".json"
@@ -37,9 +38,15 @@ export class ImportModal extends Component{
                                 }}
                                 />
                         </Alert>
-                        {this.props.importerror ? <Alert variant="danger">{this.props.importerror}</Alert> : null }
-                    </Modal.Body>
-                    <Modal.Footer>
+                        {this.state.imported ?
+                            this.props.importerror ?
+                                <Alert variant="danger">{this.props.importerror}</Alert> :  
+                                <Alert variant="success">Import Success, please wait a short while for the import to be reflected on the system</Alert>
+                                :
+                            null
+                        }
+                    </Card.Body>
+                    {/* <Card.Footer>
                         {this.props.importerror ?
                         <Form.Group>
                             <Button disabled type="submit" variant="success" onClick={() => this.props.onHide()}>Import</Button>
@@ -49,9 +56,8 @@ export class ImportModal extends Component{
                             <Button type="submit" variant="success" onClick={() => this.props.onHide()}>Import</Button>
                         </Form.Group>
                         }
-                        <Button onClick={this.props.onHide}>Close</Button>
-                    </Modal.Footer>
-                </Modal>
+                    </Card.Footer> */}
+                </Card>
             </div>
         )
     }
@@ -73,4 +79,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportModal)
+export default connect(mapStateToProps, mapDispatchToProps)(ImportWallets)
+

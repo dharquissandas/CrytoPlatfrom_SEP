@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Card, Row, Col, ListGroup, Button } from 'react-bootstrap'
+import { Tab, Nav, Row, Col, ListGroup, Button } from 'react-bootstrap'
 import Navigationbar from '../layout/Navigationbar'
-import AddFiatCurrency from './AddFiatCurrency'
-import FiatRefund from './FiatRefund'
 import {connect} from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -12,32 +10,22 @@ import {cc1} from '../cryptocurrencies/cc1'
 import {cc2} from '../cryptocurrencies/cc2'
 import {cc3} from '../cryptocurrencies/cc3'
 import Upgrade from '../auth/Upgrade';
-import ExportModal from './ExportModal'
-import ImportModal from './ImportModal'
+import ExportModal from './modals/ExportModal'
+import FiatWallet from './walletComponents/FiatWallet'
+import OverviewAlert from '../dashboard/dashboardComponents/OverviewAlert'
+import ImportWallets from './walletComponents/ImportWallets';
+import CC1Wallet from './walletComponents/CC1Wallet';
+import CC2Wallet from './walletComponents/CC2Wallet';
+import CC3Wallet from './walletComponents/CC3Wallet';
 
 export class Wallet extends Component {
 
     state = {
         finaldata : {},
         loaded : false,
-        modalShow : false,
-        checkModal : false,
         upgradeModal : false,
         exportModal : false,
-        importModal : false,
         chosencc : []
-    }
-
-    setModalShow = (bool) => {
-        this.setState({
-            modalShow : bool
-        })
-    }
-
-    setCheckModalShow = (bool) => {
-        this.setState({
-            checkModal : bool
-        })
     }
 
     setUpgradeModal = (bool) => {
@@ -47,25 +35,20 @@ export class Wallet extends Component {
     }
 
     setExportModal = (bool, cc) => {
+        console.log(bool, cc)
         this.setState({
             exportModal : bool,
             chosencc : cc
         })
     }
 
-    setImportModal = (bool) => {
-        this.setState({
-            importModal : bool,
+    reinitData = () => {
+        let {auth, transactions, profile} = this.props;
+        createData(auth, transactions).then((data) => {
+            this.setState({
+                finaldata : data
+            })
         })
-    }
-
-    setImportModalFalse = () => {
-        this.setState({
-            importModal : false
-        })
-        if(this.props.importerror){
-            window.location.reload()
-        }
     }
 
     render() {
@@ -82,140 +65,66 @@ export class Wallet extends Component {
                 <Navigationbar pass={() => this.setUpgradeModal(true)} />
                 <Upgrade show={this.state.upgradeModal} onHide={() => this.setUpgradeModal(false)} />
                 <ExportModal chosencc ={this.state.chosencc} show={this.state.exportModal} onHide={() => this.setExportModal(false)} />
-                <ImportModal show={this.state.importModal} onHide={() => this.setImportModalFalse()} /> 
-                <AddFiatCurrency show={this.state.modalShow} onHide={() => this.setModalShow(false)} /> 
-                <FiatRefund show={this.state.checkModal} onHide={() => this.setCheckModalShow(false)} /> 
-                <Container>
-                    <Row>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>Fiat Wallet</Card.Header>
-                                <Card.Body>
-                                    <Card.Title>Current Amount: {profile.fiatAmount}</Card.Title>
-                                    <Button className="mr-2" variant="primary" onClick={() => this.setModalShow(true)}>
-                                        Add Fiat Currency
-                                    </Button>
-                                    {profile.fiatAmount === "0"?
-                                    <Button variant="primary" disabled onClick={() => this.setCheckModalShow(true)} >
-                                        Refund Money To Registered Card
-                                    </Button>:
-                                    <Button variant="primary" onClick={() => this.setCheckModalShow(true)} >
-                                        Refund Money To Registered Card
-                                    </Button>
-                                    }
-                                </Card.Body>
-                            </Card>
+                <br></br>
+                <Tab.Container unmountOnExit defaultActiveKey="first">
+                    <Row style={{marginRight : "0px"}}>
+                        <Col sm={3}>
+                            <Nav variant="pills" className="ml-1 flex-column">
+                                <Nav.Item>
+                                    <Nav.Link eventKey="first">Fiat Wallet</Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="second">Import Wallet</Nav.Link>
+                                </Nav.Item>
+                                <br />
+                                {data.cc1Amount != 0 ?
+                                <Nav.Item>
+                                    <Nav.Link eventKey="third">{cc1.getName()} wallet</Nav.Link>
+                                </Nav.Item> :
+                                null
+                                }
+                                {data.cc2Amount != 0 ?
+                                <Nav.Item>
+                                    <Nav.Link eventKey="fourth">{cc2.getName()} wallet</Nav.Link>
+                                </Nav.Item> :
+                                null
+                                }
+                                {data.cc3Amount != 0 ?
+                                <Nav.Item>
+                                    <Nav.Link eventKey="fifth">{cc3.getName()} wallet</Nav.Link>
+                                </Nav.Item> :
+                                null
+                                }
+                            </Nav>
                         </Col>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>Import Wallet</Card.Header>
-                                <Card.Body>
-                                    <Card.Title>Import Exisiting Wallets Here</Card.Title>
-                                    <Button variant="primary" onClick={() => this.setImportModal(true)}>Import Wallet</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>
-                                    {cc1.getName()}
-                                        <Button onClick={() => this.setExportModal(true, data.cc1Transactions)} style={{float: "right"}} variant="success">Export</Button>
-                                </Card.Header> 
-                                <Card.Body>
-                                    <Card.Subtitle>Current Amount</Card.Subtitle>
-                                    <Card.Text>{data.cc1Amount}</Card.Text>
-                                    <hr/>
-                                    <Card>
-                                        <Card.Header>Wallet History</Card.Header>
-                                        <ListGroup variant="flush">
-                                        {data.cc1Transactions && data.cc1Transactions.map(item => {
-                                            return(
-                                                <ListGroup.Item key={item.id}>
-                                                    <p>{item.transactionType}</p>
-                                                    <p>{item.purchasedAmount}</p>
-                                                    <p>{item.transactionType === "transfer" ? 
-                                                    item.recipientemail :
-                                                    item.purchasePrice
-                                                    }</p>
-                                                    <p>{item.timestamp.toDate().toString()}</p>
-                                                </ListGroup.Item>
-                                            )
-                                        }) }
-                                        </ListGroup>
-                                    </Card>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>
-                                    {cc2.getName()}
-                                    <Button onClick={() => this.setExportModal(true, data.cc2Transactions)} style={{float: "right"}} variant="success">Export</Button>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Subtitle>Current Amount</Card.Subtitle>
-                                    <Card.Text>{data.cc2Amount}</Card.Text>
-                                    <hr/>
-                                    <Card>
-                                        <Card.Header>Wallet History</Card.Header>
-                                        <ListGroup variant="flush">
-                                        {data.cc2Transactions && data.cc2Transactions.map(item => {
-                                            return(
-                                                <ListGroup.Item key={item.id}>
-                                                    <p>{item.transactionType}</p>
-                                                    <p>{item.purchasedAmount}</p>
-                                                    <p>{item.transactionType === "transfer" ? 
-                                                    item.recipientemail :
-                                                    item.purchasePrice
-                                                    }</p>
-                                                    <p>{item.timestamp.toDate().toString()}</p>
-                                                </ListGroup.Item>
-                                            )
-                                        }) }
-                                        </ListGroup>
-                                    </Card>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col sm>  
-                            <Card>
-                                <Card.Header>
-                                    {cc3.getName()}
-                                    <Button onClick={() => this.setExportModal(true, data.cc3Transactions)} style={{float: "right"}} variant="success">Export</Button>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Subtitle>Current Amount</Card.Subtitle>
-                                    <Card.Text>{data.cc3Amount}</Card.Text>
-                                    <hr/>
-                                    <Card>
-                                        <Card.Header>Wallet History</Card.Header>
-                                        <ListGroup variant="flush">
-                                        {data.cc3Transactions.map(item => {
-                                            return(
-                                                <ListGroup.Item key={item.id}>
-                                                    <p>{item.transactionType}</p>
-                                                    <p>{item.purchasedAmount}</p>
-                                                    <p>{item.transactionType === "transfer" ? 
-                                                    item.recipientemail :
-                                                    item.purchasePrice
-                                                    }</p>
-                                                    <p>{item.timestamp.toDate().toString()}</p>
-                                                </ListGroup.Item>
-                                            )
-                                        }) }
-                                        </ListGroup>
-                                    </Card>
-                                </Card.Body>
-                            </Card>
+                        <Col sm={9}>
+                            <div>
+                            <Tab.Content>
+                                <Tab.Pane eventKey="first">
+                                    <OverviewAlert detailed profile = {profile} finalData= {data} />
+                                    <FiatWallet  profile={profile}/>
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="second">
+                                    <OverviewAlert detailed profile = {profile} finalData= {this.state.finaldata} />
+                                    <ImportWallets reinitData = {this.reinitData} />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="third">
+                                    <CC1Wallet exportModal = {this.setExportModal} finalData = {this.state.finaldata} />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="fourth">
+                                    <CC2Wallet exportModal = {this.setExportModal} finalData = {this.state.finaldata} />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey="fifth">
+                                    <CC3Wallet exportModal = {this.setExportModal} finalData = {this.state.finaldata} />
+                                </Tab.Pane>
+                            </Tab.Content>
+                        </div> 
                         </Col>
                     </Row>
-            </Container>          
-            </div> 
-            : 
-            <Container>
-            </Container> 
+                </Tab.Container>
+                <br />
+            </div>:
+            <div></div>
         )
     }
 }

@@ -17,6 +17,13 @@ export class SecurityInformation extends Component {
         })
     }
 
+    accountType = (n,p) => {
+        if(p){return "Premium Trader"}
+        else if(n==="trader"){ return "Trader"}
+        else if(n==="analyst"){ return "Analyst" }
+        else{ return "Administrator" }
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         if(this.state.oldidProof !== this.props.profile.idProof){
@@ -37,12 +44,17 @@ export class SecurityInformation extends Component {
     }
 
     render() {
-        const {profile} = this.props;
+        const {profile, auth} = this.props;
         const info  = "XXXXXX" + profile.idProof.charAt(6) + profile.idProof.charAt(7) + profile.idProof.charAt(8)
         return (
             <div>
+                <Alert variant="dark">
+                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                    {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
+                    {auth.email}
+                </Alert>
                 <Card>
-                    <Card.Header as="h5">Security Information</Card.Header>
+                    <Card.Header as="h6">Security Information</Card.Header>
                     <Card.Body>
                         <Alert variant="dark">
                             Previous Passport Identification Number : {info}

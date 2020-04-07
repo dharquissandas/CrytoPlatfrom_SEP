@@ -12,6 +12,13 @@ export class AccountInformation extends Component {
         message : ""
     }
 
+    accountType = (n,p) => {
+        if(p){return "Premium Trader"}
+        else if(n==="trader"){ return "Trader"}
+        else if(n==="analyst"){ return "Analyst" }
+        else{ return "Administrator" }
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -40,10 +47,17 @@ export class AccountInformation extends Component {
 
 
     render() {
+        let profile = this.props.profile
+        let auth = this.props.auth
         return ( 
             <div>
+                <Alert variant="dark">
+                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                    {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
+                    {auth.email}
+                </Alert>
                 <Card>
-                    <Card.Header as="h5">Account Information</Card.Header>
+                    <Card.Header as="h6">Account Information</Card.Header>
                     <Card.Body>
                         <Form autoComplete="off" id="updateinfo" onSubmit ={this.handleSubmit}>
                             <Form.Row>
@@ -71,7 +85,7 @@ export class AccountInformation extends Component {
                 </Card>
                 {this.props.profile.premium && 
                 <Card className="mt-1">
-                    <Card.Header as="h5">Unsubscribe From Premium</Card.Header>
+                    <Card.Header as="h6">Unsubscribe From Premium</Card.Header>
                     <Card.Body>
                         <p>Unsubscribing from premium will mean that you will lose broadcast and messaging ability from the helpful analysts.</p>
                     </Card.Body>

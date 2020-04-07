@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Modal, Button, Form} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Export } from '../store/actions/transactionActions'
+import { Export } from '../../store/actions/transactionActions'
 
 export class ExportModal extends Component{
     filegen = async (cc) => {
@@ -16,6 +16,7 @@ export class ExportModal extends Component{
         link.click();
         document.body.removeChild(link);
         this.props.export(cc)
+        window.location.reload()
     }
 
     render() {

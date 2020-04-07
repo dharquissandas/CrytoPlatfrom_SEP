@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Nav, Jumbotron, Button, Card, Col, Row, Tab} from 'react-bootstrap';
+import { Container, Nav, Jumbotron, Button, Alert, Col, Row, Tab} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -14,12 +14,6 @@ import SecurityInformation from './profile/SecurityInformation';
 export class Profile extends Component {
     state = {
         modalShow : false
-    }
-    accountType = (n,p) => {
-        if(p){return "Premium Trader"}
-        else if(n==="trader"){ return "Trader"}
-        else if(n==="analyst"){ return "Analyst" }
-        else{ return "Administrator" }
     }
 
     setModalShow = (bool) => {
@@ -36,17 +30,7 @@ export class Profile extends Component {
             <div>
                 <Navigationbar pass={() => this.setModalShow(true)} />
                 <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
-                <Jumbotron style={{ marginBottom : "0.2em", 
-                                    paddingBottom: "0.8em",
-                                    paddingTop: "0.8em",
-                                }} fluid>
-                    <Container>
-                        <h1>Profile</h1>
-                        <h5>{profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} </h5>
-                        <h5>{auth.email}</h5>
-                    </Container>
-                </Jumbotron>
-
+                <br></br>
                 <Tab.Container defaultActiveKey="first">
                     <Row style={{marginRight : "0px"}}>
                         <Col sm={3}>

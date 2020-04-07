@@ -1,7 +1,7 @@
 const randomFloat = require('random-float');
 const BackgroundForever = new require('background-forever').BackgroundForever;
 
-let prices = [15.23, 10.00, 19.00, 12.43, 15.33, 17.56, 18.22, 18.59, 13.11, 19.89]
+let prices = [15.23, 10.22, 19.67, 12.43, 15.33, 17.56, 18.22, 18.59, 13.11, 19.89]
 let currentPrice = 19.89
 let name = "Bitcoin"
 
@@ -11,7 +11,7 @@ const bf3 = new BackgroundForever(() => {
         if(prices.length === 10){
             prices.shift()
         }
-        prices.push(currentPrice)
+        prices.push(parseFloat(currentPrice.toFixed(2)))
         console.log("c3", prices)
         setTimeout(() => {
             resolve();

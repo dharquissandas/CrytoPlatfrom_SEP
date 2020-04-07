@@ -81,7 +81,7 @@ export class Upgrade extends Component {
 
                                 <Form.Group as={Col} controlId="sortCode">
                                     <Form.Label>Sort Code</Form.Label>
-                                    <Form.Control required type="text" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
+                                    <Form.Control required type="text" minlength="8" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
                                 </Form.Group>
                             </Form.Row>
                             <Form.Group controlId="fullAmount">

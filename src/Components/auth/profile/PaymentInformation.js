@@ -19,6 +19,13 @@ export class PaymentInformation extends Component {
         })
     }
 
+    accountType = (n,p) => {
+        if(p){return "Premium Trader"}
+        else if(n==="trader"){ return "Trader"}
+        else if(n==="analyst"){ return "Analyst" }
+        else{ return "Administrator" }
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         const {profile} = this.props;
@@ -42,13 +49,18 @@ export class PaymentInformation extends Component {
     }
 
     render() {
-        const {profile} = this.props;
+        const {profile, auth } = this.props;
         const accountNumber = "XXXXX" + profile.bankAccountNumber.charAt(5) + profile.bankAccountNumber.charAt(6) + profile.bankAccountNumber.charAt(7)
         const sc = "XXXX" +  profile.sortCode.charAt(4) + profile.sortCode.charAt(5) 
         return (
             <div>
+                <Alert variant="dark">
+                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                    {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
+                    {auth.email}
+                </Alert>
                 <Card>
-                    <Card.Header as="h5">Payment Card Information</Card.Header>
+                    <Card.Header as="h6">Payment Card Information</Card.Header>
                     <Card.Body>
                         <Alert variant="dark">
                             Previous Bank Account Number : {accountNumber}
