@@ -100,7 +100,7 @@ export class FiatWallet extends Component {
         return (
             <div>
                 <Row>
-                    <Col>
+                    <Col sm>
                         <Card>
                             <Card.Header as="h6">Add Fiat Currency</Card.Header>
                             <Card.Body>
@@ -137,7 +137,7 @@ export class FiatWallet extends Component {
                             </Card.Footer>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col sm>
                         <Card>
                             <Card.Header as="h6">Fiat Currency Refund</Card.Header>
                             <Card.Body> 

@@ -9,10 +9,14 @@ const Navigationbar = (props) => {
     const links = auth.uid ? <SignedInLinks profile={props.profile} pass = {props.pass} /> : < SignedOutLinks />
     return (
         <div>
-            <Navbar fixed="top" bg="dark" variant="dark">
-                <Navbar.Brand href="/">CryptoTrading &amp; Wallet</Navbar.Brand>
-                <Nav className="mr-auto"></Nav>
-                {links}
+            <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
+            <Navbar.Brand href="/">CryptoTrading &amp; Wallet</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="ml-auto">
+                    {links}
+                </Nav>
+            </Navbar.Collapse>
             </Navbar>
             <br />
             <br />

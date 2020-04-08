@@ -25,13 +25,12 @@ export class Overview extends Component {
     render() {
         return (
             <div>
-                <OverviewAlert profile = {this.props.profile} finalData= {this.props.finalData} />
                 <CryptoLines />
                 <br />
                 <Row>
                     <Col sm>
                         <Card>
-                            <Card.Header>Recent Prices</Card.Header>
+                            <Card.Header>Recent Prices - {this.state.cc1Name}</Card.Header>
                             <ListGroup variant="flush">
                                 {this.state.cc1Prices.map(item => {
                                     return(
@@ -43,7 +42,7 @@ export class Overview extends Component {
                     </Col>
                     <Col sm>
                         <Card>
-                            <Card.Header>Recent Prices</Card.Header>
+                            <Card.Header>Recent Prices - {this.state.cc2Name}</Card.Header>
                             <ListGroup variant="flush">
                                 {this.state.cc2Prices.map(item => {
                                     return(
@@ -55,7 +54,7 @@ export class Overview extends Component {
                     </Col>
                     <Col sm>
                         <Card>
-                            <Card.Header>Recent Prices</Card.Header>
+                            <Card.Header>Recent Prices - {this.state.cc3Name}</Card.Header>
                             <ListGroup variant="flush">
                                 {this.state.cc3Prices.map(item => {
                                     return(

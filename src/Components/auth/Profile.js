@@ -29,31 +29,37 @@ export class Profile extends Component {
             profile.isLoaded ?
             <div>
                 <Navigationbar pass={() => this.setModalShow(true)} />
-                <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
+                {profile.account != "analyst" &&
+                    <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
+                }
                 <br></br>
-                <Tab.Container defaultActiveKey="first">
+                <Tab.Container unmountOnExit defaultActiveKey="first">
                     <Row style={{marginRight : "0px"}}>
                         <Col sm={3}>
                         <Nav variant="pills" className="ml-1 flex-column">
                             <Nav.Item>
                                 <Nav.Link eventKey="first">Account Information</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="second">Payment Card Information</Nav.Link>
-                            </Nav.Item>
+                            {profile.account !== "analyst" &&
+                                <Nav.Item>
+                                    <Nav.Link eventKey="second">Payment Card Information</Nav.Link>
+                                </Nav.Item>
+                            }
                             <Nav.Item>
                                 <Nav.Link eventKey="third">Security Information</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={9} className="mobilealign">
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
                                 <AccountInformation profile = {this.props.profile}/>
                             </Tab.Pane>
-                            <Tab.Pane eventKey="second">
-                                <PaymentInformation profile={this.props.profile} />
-                            </Tab.Pane>
+                            {profile.account !== "analyst" &&
+                                <Tab.Pane eventKey="second">
+                                    <PaymentInformation profile={this.props.profile} />
+                                </Tab.Pane>
+                            }   
                             <Tab.Pane eventKey="third">
                                 <SecurityInformation profile={this.props.profile} />
                             </Tab.Pane>

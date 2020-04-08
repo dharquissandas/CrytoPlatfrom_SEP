@@ -12,7 +12,7 @@ const isToday = (someDate) => {
 
 const check = (props) => {
     const {broadcasts} = props;
-        if(isToday(broadcasts[0].timestamp.toDate())){
+        if(broadcasts.length !== 0 && isToday(broadcasts[0].timestamp.toDate())){
             return true
         }
 }

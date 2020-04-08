@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Button, Card, Col, Row, Alert} from 'react-bootstrap';
+import { Tab, Nav, Button, Card, Col, Row, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -10,8 +10,13 @@ import {cc3} from '../cryptocurrencies/cc3'
 import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 import { Broadcast } from "../store/actions/analystActions";
 import Navigationbar from '../layout/Navigationbar';
+import { createData } from '../utils/WalletUtiils'
+import Overview from './dashboardComponents/Overview'
+import BroadcastMessage from './dashboardComponents/BroadcastMessage';
+import SearchTransactions from './dashboardComponents/SearchTransactions'
 
-export class Dashboard extends Component {
+
+export class AnalystDashboard extends Component {
     state = {
         cc1 : cc1.getCC1(),
         cc1Prices : cc1.getPrices(),
@@ -22,10 +27,8 @@ export class Dashboard extends Component {
         cc3 : cc3.getCC3(),
         cc3Prices : cc3.getPrices(),
         cc3CurrentPrice : cc3.getCurrentPrice(),
-        broadcastMessage : "",
-        broadcastTitle : "",
-        check : false,
-        checkmessage : ""
+        loaded : false,
+        finalData : {}
     }
 
     componentDidMount = () => {
@@ -50,107 +53,60 @@ export class Dashboard extends Component {
         });
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(this.state.broadcastTitle, this.state.broadcastMessage)
-        let broadcast = {
-            broadcastTitle : this.state.broadcastTitle,
-            broadcastMessage : this.state.broadcastMessage
-        }
-        this.props.broadcast(broadcast)
-        this.setState({
-            check : true,
-            message : "Broadcast Sucessful"
-        })
-    }
-
-
-
     render() {
-        const { auth, account } = this.props;
-        if(!auth.uid || account !== "analyst") return <Redirect to="/"/>
+        const { auth, profile, transactions } = this.props;
+
+        createData(auth, transactions).then((data) => {
+            this.state.loaded = true
+            this.state.finalData = data
+        })
+
+        if(!auth.uid || profile.account !== "analyst") return <Redirect to="/"/>
         return (
+            this.state.loaded ?
             <div>
-                <Navigationbar />
-                <Container>
-                    <Row>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>Cryptocurrency 1</Card.Header>
-                                <Card.Body>
-                                    <Card.Subtitle>Trend Graph</Card.Subtitle>
-                                    <Sparklines data={this.state.cc1Prices} limit={9} height={100} width={300}>
-                                        <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
-                                        <SparklinesSpots />
-                                    </Sparklines>
-                                    <hr/>
-                                    <Card.Subtitle>Current Price</Card.Subtitle>
-                                    <Card.Text>{this.state.cc1CurrentPrice}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col sm>
-                            <Card>
-                                <Card.Header>Cryptocurrency 2</Card.Header>
-                                <Card.Body>
-                                    <Card.Subtitle>Trend Graph</Card.Subtitle>
-                                    <Sparklines data={this.state.cc2Prices} limit={9} height={100} width={300}>
-                                        <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
-                                        <SparklinesSpots />
-                                    </Sparklines>
-                                    <hr/>
-                                    <Card.Subtitle>Current Price</Card.Subtitle>
-                                    <Card.Text>{this.state.cc2CurrentPrice}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col sm>  
-                            <Card>
-                                <Card.Header>Cryptocurrency 3</Card.Header>
-                                <Card.Body>
-                                    <Card.Subtitle>Trend Graph</Card.Subtitle>
-                                    <Sparklines data={this.state.cc3Prices} limit={9} height={100} width={300}>
-                                        <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
-                                        <SparklinesSpots />
-                                    </Sparklines>
-                                    <hr/>
-                                    <Card.Subtitle>Current Price</Card.Subtitle>
-                                    <Card.Text>{this.state.cc3CurrentPrice}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>Broadcast Message</Card.Header>
-                                <Card.Body>
-                                    <Form autocomplete="off" id="broadcast" onSubmit={this.handleSubmit}>
-                                        <Form.Group controlId="broadcastTitle">
-                                            <Form.Label>Broadcast Title</Form.Label>
-                                            <Form.Control required type="text" placeholder="Title" onChange={this.handleChange} />
-                                        </Form.Group>
-                                        <Form.Group controlId="broadcastMessage">
-                                            <Form.Label>Broadcast Content</Form.Label>
-                                            <Form.Control required as="textarea" rows="3" placeholder="Content" onChange={this.handleChange} />
-                                        </Form.Group>
-                                    </Form>
-                                    {this.state.check ? <Alert variant="success">{this.state.message}</Alert> : null }
-                                </Card.Body>
-                                <Card.Footer>
-                                    <Button type="submit" form="broadcast" variant="success">Broadcast</Button>
-                                </Card.Footer>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+            <Navigationbar />
+            <br></br>
+            <Tab.Container unmountOnExit defaultActiveKey="first">
+                <Row style={{marginRight : "0px"}}>
+                    <Col sm={3}>
+                        <Nav variant="pills" className="ml-1 flex-column">
+                            <Nav.Item>
+                                <Nav.Link eventKey="first">Overview</Nav.Link>
+                            </Nav.Item>
+                            <br />
+                            <Nav.Item>
+                                <Nav.Link eventKey="second">Broadcast Message</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link eventKey="third">Search Transactions</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                    </Col>
+                    <Col sm={9} className="mobilealign">
+                        <div>
+                        <Tab.Content>
+                            <Tab.Pane eventKey="first">
+                                <Overview  profile = {profile} finalData= {this.state.finalData} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="second">
+                                <BroadcastMessage broadcast = {this.props.broadcast} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="third">
+                                <SearchTransactions transactions = {transactions} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey="fourth">
+                                {/* <OverviewAlert detailed profile = {profile} finalData= {this.state.finalData} />
+                                <Transfer reinitData = {this.reinitData} profile = {profile} finalData= {this.state.finalData} /> */}
+                            </Tab.Pane>
+                        </Tab.Content>
+                    </div>
+                    </Col>
+                </Row>
+            </Tab.Container>
+            <br />
+        </div>:
+        <div></div>            
         )
     }
 }
@@ -158,7 +114,7 @@ const mapStateToProps = (state) => {
     return{
         transactions: state.firestore.ordered.transactions,
         auth : state.firebase.auth,
-        account : state.firebase.profile.account,
+        profile : state.firebase.profile,
         notifications : state.firestore.ordered.notifications
     }
 }
@@ -175,5 +131,5 @@ export default compose(
         {collection: "transactions", orderBy : ["timestamp"]},
         {collection: "notifications", limit: 5, orderBy: ["time"]}
     ])
-)(Dashboard)
+)(AnalystDashboard)
 

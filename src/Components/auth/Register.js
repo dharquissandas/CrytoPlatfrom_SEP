@@ -190,9 +190,9 @@ class Register extends Component {
                         <Card.Footer>
                             <Button variant="success" form="register" type="submit">Register</Button>
                             <div id="right">
-                                <span>Already Have An Account?</span>
+                                <span className="size mr-2" >Already Have An Account?</span>
                                 <Link to="/">
-                                    <Button className="ml-2" type="submit">Sign In</Button>
+                                    <Button type="submit">Sign In</Button>
                                 </Link>
                             </div>
                         </Card.Footer>

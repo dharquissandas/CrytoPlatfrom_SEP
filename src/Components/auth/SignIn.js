@@ -31,7 +31,7 @@ class SignIn extends Component {
         return (
             <div >
                 <Container>
-                    <Card className="authcard">
+                    <Card className="authcard cardsmobile">
                         <Card.Header as="h5">CryptoTrading &amp; Wallet</Card.Header>
                         <Card.Body>
                             <Container>
@@ -57,8 +57,8 @@ class SignIn extends Component {
                         <Card.Footer>
                         <Button form="signin" className="mr-1" variant="success" type="submit">Sign In</Button>
                         <div id="right">
-                            <span>Don't Have An Account?</span>
-                            <Link className="ml-2" to="/register">
+                            <span className="size mr-2">Don't Have An Account?</span>
+                            <Link to="/register">
                                 <Button variant="primary" >Register</Button>
                             </Link>
                         </div>

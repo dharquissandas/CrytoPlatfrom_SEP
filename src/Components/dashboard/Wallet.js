@@ -97,7 +97,7 @@ export class Wallet extends Component {
                                 }
                             </Nav>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={9} className="mobilealign">
                             <div>
                             <Tab.Content>
                                 <Tab.Pane eventKey="first">

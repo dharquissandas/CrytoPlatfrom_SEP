@@ -18,7 +18,7 @@ import Upgrade from '../auth/Upgrade';
 import Buy from './dashboardComponents/Buy'
 import Sell from './dashboardComponents/Sell'
 import Transfer from './dashboardComponents/Transfer'
-import Overview from './dashboardComponents/Overview';
+import Overview from './dashboardComponents/Overview'
 
 
 export class Dashboard extends Component {
@@ -135,10 +135,11 @@ export class Dashboard extends Component {
                                 </Nav.Item>
                             </Nav>
                         </Col>
-                        <Col sm={9}>
+                        <Col sm={9} className="mobilealign">
                             <div>
                             <Tab.Content>
                                 <Tab.Pane eventKey="first">
+                                    <OverviewAlert profile = {profile} finalData= {this.state.finalData} />
                                     <Overview  profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="second">
