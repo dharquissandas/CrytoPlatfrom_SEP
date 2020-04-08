@@ -10,44 +10,38 @@ const isToday = (someDate) => {
       someDate.getFullYear() === today.getFullYear()
   }
 
-const check = (props) => {
-    const {broadcasts} = props;
-        if(isToday(broadcasts[0].timestamp.toDate())){
-            return true
-        }
-}
-
 export const Broadcasts = (props) => {
     const {broadcasts} = props;
-    console.log(broadcasts)
-    return (
-        check(props) ?
-        <div className="section">
-                {broadcasts && check(props) && broadcasts.map(item => {
-                    if(isToday(item.timestamp.toDate())){
-                    return(
-                        <Card className="notif">
-                            <Card.Header className="notifHeader">
-                                <strong className="mr-auto">Broadcast</strong>
-                                <small>{moment(item.timestamp.toDate()).calendar()}</small>
-                            </Card.Header>
-                                <Card.Body className="notifBody">
-                                    <h6>{item.broadcastTitle}</h6>
-                                    <p>{item.broadcastMessage}</p>
-                                    <p>- {item.email}</p>
-                                </Card.Body>
-                        </Card>
-                    )
-                    }
-                }) }
-        </div>:
-        <div>
-            <Card className="notif">
-                <Card.Body className="notifBody">
-                    <h6>No Broadcasts for Today</h6>
-                </Card.Body>
-            </Card>
-        </div>
-    )
+    const filterBroadcasts = broadcasts !== undefined ? broadcasts.filter((item) => isToday(item.timestamp.toDate())) : [];
+
+    if (filterBroadcasts.length > 0) {
+        return (
+            <div className="section">
+                { filterBroadcasts.map(item => (
+                    <Card className="notif">
+                        <Card.Header className="notifHeader">
+                            <strong className="mr-auto">Broadcast</strong>
+                            <small>{moment(item.timestamp.toDate()).calendar()}</small>
+                        </Card.Header>
+                        <Card.Body className="notifBody">
+                            <h6>{item.broadcastTitle}</h6>
+                            <p>{item.broadcastMessage}</p>
+                            <p>- {item.email}</p>
+                        </Card.Body>
+                    </Card>
+                )) }
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Card className="notif">
+                    <Card.Body className="notifBody">
+                        <h6 style={{ marginBottom: 0 }}>No Broadcasts for Today</h6>
+                    </Card.Body>
+                </Card>
+            </div>
+        );
+    }
 }
 export default Broadcasts
