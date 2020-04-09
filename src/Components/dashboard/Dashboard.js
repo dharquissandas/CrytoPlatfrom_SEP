@@ -171,7 +171,6 @@ const mapStateToProps = (state) => {
         transactions: state.firestore.ordered.transactions,
         auth : state.firebase.auth,
         profile : state.firebase.profile,
-        notifications : state.firestore.ordered.notifications,
         users : state.firestore.ordered.users
     }
 }
@@ -186,7 +185,6 @@ export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
         {collection: "transactions", orderBy : ["timestamp"]},
-        {collection: "notifications", limit: 5, orderBy: ["time"]},
         {collection: "users"},
         {collection: "broadcasts", orderBy:["timestamp","desc"]}
     ])

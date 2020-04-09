@@ -6,7 +6,7 @@ import { cc2 } from '../../cryptocurrencies/cc2'
 import { cc3 } from '../../cryptocurrencies/cc3'
 import { Transact } from '../../store/actions/transactionActions';
 import Search from 'react-search'
-import {userData, findTrader} from '../../utils/DashboardUtils'
+import {userData, findUser} from '../../utils/DashboardUtils'
 
 export class Transfer extends Component {
     state = {
@@ -26,7 +26,6 @@ export class Transfer extends Component {
         cc3Prices : cc3.getPrices(),
         cc3CurrentPrice : cc3.getCurrentPrice(),
         transferRecipient : null,
-        transferModal : false,
         transferPackage : {}
     }
 
@@ -39,12 +38,6 @@ export class Transfer extends Component {
     setTransferRecipient = (items) => {
         this.setState({
             transferRecipient : items[0]
-        })
-    }
-
-    setTransferModal = (bool) => {
-        this.setState({
-            transferModal : bool
         })
     }
 
@@ -76,7 +69,7 @@ export class Transfer extends Component {
                 let recipient = this.state.transferRecipient
                 let amount = this.state.transferamount
                 let cc = this.state.transfercryptocurrency
-                recipient = findTrader(this.props.auth.uid,this.props.users,recipient)
+                recipient = findUser(this.props.auth.uid,this.props.users,recipient, "trader")
                 let info = {
                     transactionType : "transfer",
                     cryptocurrency : cc,
@@ -106,7 +99,7 @@ export class Transfer extends Component {
     render() {
         console.log(this.props)
         const { auth, users, transactions } = this.props;
-        let items = userData(users, auth.uid)
+        let items = userData(users, auth.uid, "trader")
         return (
             <div>
             <Card>
@@ -116,7 +109,7 @@ export class Transfer extends Component {
                     <Form.Group>
                         <Form.Label>Username of Recipient</Form.Label>
                         <Search items={items}
-                            placeholder='Search Username of Recipient'
+                            placeholder='Search Email of Recipient'
                             maxSelected={1}
                             multiple={true}
                             autocomplete="off"

@@ -19,3 +19,17 @@ export const Broadcast = (broadcast) => {
         
     }
 }
+
+export const deleteBroadcast = (id) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        //DB Call
+        const fs = getFirestore();
+        fs.collection("broadcasts").doc(id).delete()
+        .then(() => {
+            dispatch({type: 'BROADCAST_DELETED', id});
+        }).catch((err) => {
+            dispatch({type: 'BROADCAST_ERROR', err})
+        })
+        
+    }
+}

@@ -67,8 +67,8 @@ export const otherSignUp = (newUser) => {
                 username: newUser.username,
                 idProof: newUser.idProof,
                 firstname : newUser.firstname,
-                lastname : newUser.lastname
-
+                lastname : newUser.lastname,
+                em : newUser.email
             });
             }).then(() =>{
                 dispatch({type: "SIGNUP_SUCCESS"});

@@ -27,7 +27,7 @@ export class BroadcastMessage extends Component {
         this.props.broadcast(broadcast)
         this.setState({
             check : true,
-            message : "Broadcast Sucessful"
+            message : "Broadcast Successful"
         })
     }
 

@@ -123,7 +123,7 @@ export class SearchTransactions extends Component {
                     </div>
                 }
                 {this.state.resultscheck &&
-                this.state.results !== null && this.state.results.slice(0,10).map(item => {
+                this.state.results !== null && this.state.results.map(item => {
                     return(
                         <Card className="notif" key={item.id}>
                             <Card.Header className="notifHeader">

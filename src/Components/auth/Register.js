@@ -129,16 +129,17 @@ class Register extends Component {
                                                 <Form.Control type="text" required placeholder="Last Name" min="2" onChange={this.handleChange} />
                                                 </Form.Group>
                                             </Form.Row>
+                                            
                                             <Form.Row>
                                                 <Form.Group as={Col} controlId="username">
                                                     <Form.Label>Username</Form.Label>
                                                     <Form.Control type="text" required placeholder="Username" min="2" onChange={this.handleChange} />
                                                 </Form.Group>
                                                 
-                                            <Form.Group as={Col} controlId="email">
-                                                <Form.Label>Email</Form.Label>
-                                                <Form.Control type="email" required placeholder="Email" onChange={this.handleChange} />
-                                            </Form.Group>
+                                                <Form.Group as={Col} controlId="email">
+                                                    <Form.Label>Email</Form.Label>
+                                                    <Form.Control type="email" required placeholder="Email" onChange={this.handleChange} />
+                                                </Form.Group>
                                             </Form.Row>
 
                                             <Form.Group controlId="idProof">
