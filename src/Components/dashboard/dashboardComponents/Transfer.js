@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Card, Col, Alert, Row } from 'react-bootstrap';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { cc1 } from '../../cryptocurrencies/cc1'
 import { cc2 } from '../../cryptocurrencies/cc2'
@@ -98,7 +98,7 @@ export class Transfer extends Component {
 
     render() {
         console.log(this.props)
-        const { auth, users, transactions } = this.props;
+        const { auth, users } = this.props;
         let items = userData(users, auth.uid, "trader")
         return (
             <div>
@@ -107,7 +107,7 @@ export class Transfer extends Component {
             <Card.Body>
                 <Form autocomplete="off" id="transfer" onSubmit={this.handleTransfer}>
                     <Form.Group>
-                        <Form.Label>Username of Recipient</Form.Label>
+                        <Form.Label>Recipient</Form.Label>
                         <Search items={items}
                             placeholder='Search Email of Recipient'
                             maxSelected={1}

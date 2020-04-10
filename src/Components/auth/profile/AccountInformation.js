@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Alert, Form, Jumbotron, Button, Card, Col, Row, Tab} from 'react-bootstrap';
+import { Alert, Form, Button, Card, Col } from 'react-bootstrap';
 import { accountUpdate, upgrade } from '../../store/actions/authActions'
 
 export class AccountInformation extends Component {

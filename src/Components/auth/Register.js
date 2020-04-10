@@ -180,7 +180,7 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
-                                                {authError ? <Alert variant="danger">{authError}</Alert> : null}
+                                                {authError && authError !== "Login Failed" ? <Alert variant="danger">{authError}</Alert> : null}
                                                 {this.state.issue ? <Alert variant="danger">{this.state.checkresult}</Alert> : null}
                                             </div>
                                         </Form>

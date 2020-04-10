@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Nav, Jumbotron, Button, Alert, Col, Row, Tab} from 'react-bootstrap';
+import {Nav, Col, Row, Tab} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -29,7 +29,7 @@ export class Profile extends Component {
             profile.isLoaded ?
             <div>
                 <Navigationbar pass={() => this.setModalShow(true)} />
-                {profile.account != "analyst" &&
+                {profile.account === "trader" &&
                     <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
                 }
                 <br></br>
@@ -40,7 +40,7 @@ export class Profile extends Component {
                             <Nav.Item>
                                 <Nav.Link eventKey="first">Account Information</Nav.Link>
                             </Nav.Item>
-                            {profile.account !== "analyst" &&
+                            {profile.account === "trader" &&
                                 <Nav.Item>
                                     <Nav.Link eventKey="second">Payment Card Information</Nav.Link>
                                 </Nav.Item>
@@ -55,7 +55,7 @@ export class Profile extends Component {
                             <Tab.Pane eventKey="first">
                                 <AccountInformation profile = {this.props.profile}/>
                             </Tab.Pane>
-                            {profile.account !== "analyst" &&
+                            {profile.account === "trader" &&
                                 <Tab.Pane eventKey="second">
                                     <PaymentInformation profile={this.props.profile} />
                                 </Tab.Pane>

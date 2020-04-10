@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import CryptoLines from './CryptoLines'
-import OverviewAlert from './OverviewAlert'
 import {Card, ListGroup, Row, Col} from 'react-bootstrap'
 import { cc1 } from '../../cryptocurrencies/cc1'
 import { cc2 } from '../../cryptocurrencies/cc2'

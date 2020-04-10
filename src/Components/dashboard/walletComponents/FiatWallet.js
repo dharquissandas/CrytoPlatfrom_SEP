@@ -133,7 +133,7 @@ export class FiatWallet extends Component {
                                 null}
                             </Card.Body>
                             <Card.Footer>
-                                    <Button form="fiatTransact" form="fiatTransact" type="submit" variant="success">Transact</Button>
+                                    <Button form="fiatTransact"  type="submit" variant="success">Transact</Button>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -182,7 +182,7 @@ export class FiatWallet extends Component {
                                 }
                             </Card.Body>
                             <Card.Footer>
-                                    <Button form="fiatRefund" type="submit" form="fiatRefund" variant="success" >Refund</Button>
+                                    <Button form="fiatRefund" type="submit" variant="success" >Refund</Button>
                             </Card.Footer>
                         </Card>
                     </Col>

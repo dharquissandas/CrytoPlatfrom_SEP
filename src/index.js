@@ -13,7 +13,6 @@ import { reduxFirestore, getFirestore, createFirestoreInstance } from 'redux-fir
 import { ReactReduxFirebaseProvider, getFirebase, isLoaded } from 'react-redux-firebase'
 import FbConfig from './Config/FbConfig'
 import firebase from "firebase/app"
-import { Spinner } from 'react-bootstrap'
 
 const store = createStore(rootReducer, 
     compose(
@@ -32,7 +31,6 @@ const profileSpecificProps = {
 
 const rrfProps={
     firebase,
-    config: FbConfig,
     config: profileSpecificProps,
     dispatch: store.dispatch,
     createFirestoreInstance

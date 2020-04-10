@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Form, Jumbotron, Button, Card, Col, Row, Tab} from 'react-bootstrap';
+import { Alert, Form, Button, Card} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { idUpdate } from '../../store/actions/authActions'
 

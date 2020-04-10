@@ -39,6 +39,7 @@ export const Broadcasts = (props) => {
                         </Card>
                     )
                     }
+                    else return null
                 }) }
         </div>:
         <div>

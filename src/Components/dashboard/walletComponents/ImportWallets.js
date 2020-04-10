@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, Button, Form, Alert} from 'react-bootstrap';
+import {Card, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Import } from '../../store/actions/transactionActions';
 import FileUploader from 'file-uploader-js';
@@ -19,7 +19,6 @@ export class ImportWallets extends Component {
             imported : true
         })
 
-        // this.props.reinitData()
         window.location.reload()
     }
 
@@ -46,17 +45,6 @@ export class ImportWallets extends Component {
                             null
                         }
                     </Card.Body>
-                    {/* <Card.Footer>
-                        {this.props.importerror ?
-                        <Form.Group>
-                            <Button disabled type="submit" variant="success" onClick={() => this.props.onHide()}>Import</Button>
-                        </Form.Group>
-                        :
-                        <Form.Group>
-                            <Button type="submit" variant="success" onClick={() => this.props.onHide()}>Import</Button>
-                        </Form.Group>
-                        }
-                    </Card.Footer> */}
                 </Card>
             </div>
         )

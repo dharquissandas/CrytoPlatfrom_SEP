@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tab, Nav, Row, Col, ListGroup, Button } from 'react-bootstrap'
+import { Tab, Nav, Row, Col} from 'react-bootstrap'
 import Navigationbar from '../layout/Navigationbar'
 import {connect} from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase';
@@ -43,7 +43,7 @@ export class Wallet extends Component {
     }
 
     reinitData = () => {
-        let {auth, transactions, profile} = this.props;
+        let {auth, transactions} = this.props;
         createData(auth, transactions).then((data) => {
             this.setState({
                 finaldata : data
@@ -77,19 +77,19 @@ export class Wallet extends Component {
                                     <Nav.Link eventKey="second">Import Wallet</Nav.Link>
                                 </Nav.Item>
                                 <br />
-                                {data.cc1Amount != 0 ?
+                                {data.cc1Amount !== 0 ?
                                 <Nav.Item>
                                     <Nav.Link eventKey="third">{cc1.getName()} wallet</Nav.Link>
                                 </Nav.Item> :
                                 null
                                 }
-                                {data.cc2Amount != 0 ?
+                                {data.cc2Amount !== 0 ?
                                 <Nav.Item>
                                     <Nav.Link eventKey="fourth">{cc2.getName()} wallet</Nav.Link>
                                 </Nav.Item> :
                                 null
                                 }
-                                {data.cc3Amount != 0 ?
+                                {data.cc3Amount !== 0 ?
                                 <Nav.Item>
                                     <Nav.Link eventKey="fifth">{cc3.getName()} wallet</Nav.Link>
                                 </Nav.Item> :

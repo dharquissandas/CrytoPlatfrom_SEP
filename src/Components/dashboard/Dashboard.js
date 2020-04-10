@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Tab, Nav, Jumbotron, Col, Row, Alert} from 'react-bootstrap';
+import { Tab, Nav, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Transact } from '../store/actions/transactionActions';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -91,22 +91,14 @@ export class Dashboard extends Component {
         else{ return "Administrator" }
     }
 
-    reinitData = () => {
-        let {auth, transactions, profile} = this.props;
-        createData(auth, transactions).then((data) => {
-            this.setState({
-                finaldata : data
-            })
-        })
-    }
-
     render() {
-        const { auth, profile, transactions, users } = this.props;
+        const { auth, profile, transactions } = this.props;
 
         createData(auth, transactions).then((data) => {
             this.state.loaded = true
             this.state.finalData = data
         })
+
         if(profile.isLoaded){
             if(!auth.uid || profile.account !== "trader" ){return(<Redirect to="/"/>)}
         }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Card, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { cc1 } from '../../cryptocurrencies/cc1'
 import { cc2 } from '../../cryptocurrencies/cc2'

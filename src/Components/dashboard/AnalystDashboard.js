@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab, Nav, Button, Card, Col, Row, Alert} from 'react-bootstrap';
+import { Tab, Nav, Col, Row} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom'
 import {cc1} from '../cryptocurrencies/cc1'
 import {cc2} from '../cryptocurrencies/cc2'
 import {cc3} from '../cryptocurrencies/cc3'
-import { Sparklines, SparklinesLine, SparklinesSpots } from 'react-sparklines';
 import { Broadcast } from "../store/actions/analystActions";
 import Navigationbar from '../layout/Navigationbar';
 import { createData } from '../utils/WalletUtiils'

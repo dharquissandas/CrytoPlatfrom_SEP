@@ -3,7 +3,7 @@ import moment from 'moment'
 export const userData = (users, currentUser, accType) => {
     let userDataArray = []
     for(let i = 0; i < users.length; i++){
-        if(accType != "any"){
+        if(accType !== "any"){
             if(currentUser !== users[i].id && users[i].account === accType){
                 let user = {}
                 user.id = i

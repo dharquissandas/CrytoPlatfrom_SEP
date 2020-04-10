@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import {cc1} from '../../cryptocurrencies/cc1'
-import {cc2} from '../../cryptocurrencies/cc2'
-import {cc3} from '../../cryptocurrencies/cc3'
-import {Card, Form, Col, Button, Alert} from 'react-bootstrap'
+import {Card, Form, Button, Alert} from 'react-bootstrap'
 import { userData , findUser, idSearch, categorySearch } from '../../utils/DashboardUtils'
-import moment from 'moment'
 import Search from 'react-search'
 
 export class SearchUsers extends Component {
@@ -73,14 +69,14 @@ export class SearchUsers extends Component {
                     </Card.Header>
                     <Card.Body>
                         <h6>To search for user, atleast one of the fields below must be filled </h6>
-                        <Form id="search" autocomplete="off" onSubmit={this.handleSubmit}>
+                        <Form autocomplete="off" id="users" onSubmit={this.handleSubmit}>
                             <Form.Group>
-                                <Form.Label>User Email</Form.Label>
+                                <Form.Label>User Quick Search</Form.Label>
                                 <Search items={items}
                                     placeholder='Search email of Recipient'
                                     maxSelected={1}
                                     multiple={true}
-                                    autocomplete="off"
+                                    autocomplete = "off"
                                     onItemsChanged={this.setUser.bind(this)}
                                     />
                             </Form.Group>
@@ -102,7 +98,7 @@ export class SearchUsers extends Component {
                         </Form>
                     </Card.Body>    
                     <Card.Footer>
-                        <Button variant="success" type="submit" form="search">Search</Button>
+                        <Button variant="success" type="submit" form="users">Search</Button>
                     </Card.Footer>
                 </Card>
                 {this.state.resultscheck &&

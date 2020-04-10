@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { Broadcast } from '../../store/actions/analystActions'
-import { connect } from 'react-redux'
 
 export class BroadcastMessage extends Component {
     state = {

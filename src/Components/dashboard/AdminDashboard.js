@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tab, Nav, Button, Card, Col, Row, Alert} from 'react-bootstrap';
+import { Tab, Nav, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
