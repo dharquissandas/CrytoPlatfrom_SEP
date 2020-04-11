@@ -17,7 +17,6 @@ export class BroadcastMessage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state.broadcastTitle, this.state.broadcastMessage)
         let broadcast = {
             broadcastTitle : this.state.broadcastTitle,
             broadcastMessage : this.state.broadcastMessage

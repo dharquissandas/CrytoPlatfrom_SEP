@@ -22,9 +22,6 @@ const analystReducer = (state = initState, action) => {
         case 'CLOSE_ERROR':
             console.log('close error', action.err);
             return state;
-        case 'BROADCAST_ERROR':
-            console.log('broadcast error', action.err);
-            return state;
         case 'DELETE_BROADCAST':
             console.log('broadcast');
             return state;

@@ -45,12 +45,10 @@ export const search = (transactions, criteria) => {
     let dateFrom = criteria.startDate
     let dateTo = criteria.endDate
     let tt = criteria.tt
-    console.log(criteria)
     for(let i = 0; i< transactions.length; i++){
         let dateCheck = moment(transactions[i].timestamp.toDate()).format().substr(0,10)
         if(criteria.cryptocurrency === transactions[i].cryptocurrency && moment(dateCheck).isBetween(dateFrom, dateTo, null, "[]")){
             if(tt !== "Any"){
-                console.log(transactions[i].transactionType)
                 if(tt.toLowerCase() === transactions[i].transactionType){
                     results.push(transactions[i])
                 }

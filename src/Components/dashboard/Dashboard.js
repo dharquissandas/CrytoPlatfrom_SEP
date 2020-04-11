@@ -93,7 +93,6 @@ export class Dashboard extends Component {
 
     render() {
         const { auth, profile, transactions } = this.props;
-        console.log(this.props.messages)
         createData(auth, transactions).then((data) => {
             this.state.loaded = true
             this.state.finalData = data

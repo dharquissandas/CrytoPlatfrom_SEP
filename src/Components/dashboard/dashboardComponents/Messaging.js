@@ -30,7 +30,6 @@ export class Messaging extends Component {
 
     render() {
         this.state.userMessages = idMessageSearch(this.props.messages, this.state.senderId)
-        console.log(this.state.userMessages)
         return (
             <div>
                 <Row>

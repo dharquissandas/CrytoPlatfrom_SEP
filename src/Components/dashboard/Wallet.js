@@ -35,7 +35,6 @@ export class Wallet extends Component {
     }
 
     setExportModal = (bool, cc) => {
-        console.log(bool, cc)
         this.setState({
             exportModal : bool,
             chosencc : cc

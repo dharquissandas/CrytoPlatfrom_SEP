@@ -2,7 +2,6 @@
 export const Transact = (transaction) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         //DB Call
-        console.log(transaction)
         const fs = getFirestore();
         const userId = getState().firebase.auth.uid;
         let prevAmount = parseFloat(getState().firebase.profile.fiatAmount)

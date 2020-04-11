@@ -24,8 +24,6 @@ export class OverviewAlert extends Component {
     render() {
         let profile = this.props.profile
         let finalData = this.props.finalData
-        console.log(finalData)
-        console.log(window.location.pathname)
         return (
             this.props.detailed ? 
             <div>

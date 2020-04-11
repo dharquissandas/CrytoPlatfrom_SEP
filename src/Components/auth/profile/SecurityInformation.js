@@ -27,14 +27,12 @@ export class SecurityInformation extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if(this.state.oldidProof !== this.props.profile.idProof){
-            console.log("there")
             this.setState({
                 check : false,
                 message : "Invalid Credentials"
             })
         }
         else{
-            console.log("here")
             this.props.idUpdate(this.state.idProof)
             this.setState({
                 check : true,

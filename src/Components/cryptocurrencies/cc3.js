@@ -12,7 +12,6 @@ const bf3 = new BackgroundForever(() => {
             prices.shift()
         }
         prices.push(parseFloat(currentPrice.toFixed(2)))
-        console.log("c3", prices)
         setTimeout(() => {
             resolve();
         }, 60000);

@@ -19,7 +19,6 @@ const check = (props) => {
 
 export const Broadcasts = (props) => {
     const {broadcasts} = props;
-    console.log(broadcasts)
     return (
         check(props) ?
         <div className="section">

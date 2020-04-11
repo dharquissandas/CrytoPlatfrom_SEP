@@ -34,7 +34,6 @@ export class SearchUsers extends Component {
     
 
     handleSubmit = (e) => {
-        console.log(this.state)
         e.preventDefault()
         if(typeof this.state.user !== 'undefined'){
             this.setState({
@@ -59,7 +58,6 @@ export class SearchUsers extends Component {
     }
 
     render() {
-        console.log(this.state.results)
         let items = userData(this.props.users, this.props.auth.uid, "any")
         return (
             <div>

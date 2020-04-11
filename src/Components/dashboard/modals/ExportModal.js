@@ -28,7 +28,6 @@ export class ExportModal extends Component{
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 >
-                    {console.log(this.props)}
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Export Wallet
