@@ -33,3 +33,35 @@ export const deleteBroadcast = (id) => {
         
     }
 }
+
+export const Message = (oldmessages, message) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        //DB Call
+        const fs = getFirestore();
+        fs.collection("messages").doc(message.inituserId).set({
+            userId : message.inituserId,
+            checked : false,
+            userMessages : [message, ...oldmessages ]
+
+        }).then(() => {
+            dispatch({type: 'MESSAGE', message});
+        }).catch((err) => {
+            dispatch({type: 'MESSAGE_ERROR', err})
+        })
+        
+    }
+}
+
+export const Close = (id) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const fs = getFirestore()
+        fs.collection("messages").doc(id).update({
+            checked : true
+        }).then(() => {
+            dispatch({type: 'CLOSE', id})
+        }).catch((err) => {
+            dispatch({type: 'CLOSE_ERROR', err})
+        })
+    }
+}
+

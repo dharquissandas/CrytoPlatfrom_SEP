@@ -7,12 +7,14 @@ import { Redirect } from 'react-router-dom'
 import {cc1} from '../cryptocurrencies/cc1'
 import {cc2} from '../cryptocurrencies/cc2'
 import {cc3} from '../cryptocurrencies/cc3'
-import { Broadcast } from "../store/actions/analystActions";
+import { Broadcast, Message, Close } from "../store/actions/analystActions";
+import { findNCheckedMessages } from '../utils/DashboardUtils'
 import Navigationbar from '../layout/Navigationbar';
 import { createData } from '../utils/WalletUtiils'
 import Overview from './dashboardComponents/Overview'
 import BroadcastMessage from './dashboardComponents/BroadcastMessage';
 import SearchTransactions from './dashboardComponents/SearchTransactions'
+import TraderMessages from './dashboardComponents/TraderMessages'
 
 
 export class AnalystDashboard extends Component {
@@ -53,7 +55,7 @@ export class AnalystDashboard extends Component {
     }
 
     render() {
-        const { auth, profile, transactions } = this.props;
+        const { auth, profile, transactions, messages } = this.props;
 
         createData(auth, transactions).then((data) => {
             this.state.loaded = true
@@ -62,7 +64,7 @@ export class AnalystDashboard extends Component {
 
         if(!auth.uid || profile.account !== "analyst") return <Redirect to="/"/>
         return (
-            this.state.loaded ?
+            this.state.loaded && messages ?
             <div>
             <Navigationbar />
             <br></br>
@@ -77,8 +79,11 @@ export class AnalystDashboard extends Component {
                             <Nav.Item>
                                 <Nav.Link eventKey="second">Broadcast Message</Nav.Link>
                             </Nav.Item>
+                            <Nav.Item >
+                                <Nav.Link style={{display:"flex"}} eventKey="third"><div className="mr-auto">Trader Messages</div>  <div> Unread: {findNCheckedMessages(this.props.messages).length}</div></Nav.Link>
+                            </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="third">Search Transactions</Nav.Link>
+                                <Nav.Link eventKey="fourth">Search Transactions</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>
@@ -92,11 +97,14 @@ export class AnalystDashboard extends Component {
                                 <BroadcastMessage broadcast = {this.props.broadcast} />
                             </Tab.Pane>
                             <Tab.Pane eventKey="third">
-                                <SearchTransactions transactions = {transactions} />
+                                <TraderMessages messages = {this.props.messages} 
+                                                close={this.props.close} 
+                                                message = {this.props.message} 
+                                                users = {this.props.users} 
+                                                auth={this.props.auth} />
                             </Tab.Pane>
                             <Tab.Pane eventKey="fourth">
-                                {/* <OverviewAlert detailed profile = {profile} finalData= {this.state.finalData} />
-                                <Transfer reinitData = {this.reinitData} profile = {profile} finalData= {this.state.finalData} /> */}
+                                <SearchTransactions transactions = {transactions} />
                             </Tab.Pane>
                         </Tab.Content>
                     </div>
@@ -114,19 +122,25 @@ const mapStateToProps = (state) => {
         transactions: state.firestore.ordered.transactions,
         auth : state.firebase.auth,
         profile : state.firebase.profile,
+        messages : state.firestore.ordered.messages,
+        users : state.firestore.ordered.users
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        broadcast : (broadcast) => dispatch(Broadcast(broadcast))
+        broadcast : (broadcast) => dispatch(Broadcast(broadcast)),
+        message : (oldmessages, message) => dispatch(Message(oldmessages, message)),
+        close : (id) => dispatch(Close(id))
     }
 }
 
 export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
-        {collection: "transactions", orderBy : ["timestamp"]},
+        {collection: "transactions", orderBy : ["timestamp"]},        
+        {collection: "messages"},
+        {collection: "users"},
     ])
 )(AnalystDashboard)
 

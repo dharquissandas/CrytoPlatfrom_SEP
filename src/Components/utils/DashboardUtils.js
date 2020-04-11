@@ -102,3 +102,22 @@ export const categorySearch = (c , users) => {
     }
     return results
 }
+
+export const idMessageSearch = (messages, id) => {
+    for(let i=0; i<messages.length; i++){
+        if(messages[i].userId === id){
+            return messages[i].userMessages
+        }
+    }
+    return []
+}
+
+export const findNCheckedMessages = (messages) => {
+    let results = []
+    for(let i=0; i<messages.length; i++){
+        if(messages[i].checked === false){
+            results.push(messages[i])
+        }
+    }
+    return results
+}

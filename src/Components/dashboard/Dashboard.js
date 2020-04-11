@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { Tab, Nav, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Transact } from '../store/actions/transactionActions';
+import { Message } from '../store/actions/analystActions';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import {cc1} from '../cryptocurrencies/cc1'
 import {cc2} from '../cryptocurrencies/cc2'
 import {cc3} from '../cryptocurrencies/cc3'
-
 import { createData } from '../utils/WalletUtiils'
 import OverviewAlert from './dashboardComponents/OverviewAlert';
-
 import '../../App.css'
 import Navigationbar from '../layout/Navigationbar';
 import Upgrade from '../auth/Upgrade';
@@ -19,6 +18,7 @@ import Buy from './dashboardComponents/Buy'
 import Sell from './dashboardComponents/Sell'
 import Transfer from './dashboardComponents/Transfer'
 import Overview from './dashboardComponents/Overview'
+import Messaging from './dashboardComponents/Messaging'
 
 
 export class Dashboard extends Component {
@@ -93,7 +93,7 @@ export class Dashboard extends Component {
 
     render() {
         const { auth, profile, transactions } = this.props;
-
+        console.log(this.props.messages)
         createData(auth, transactions).then((data) => {
             this.state.loaded = true
             this.state.finalData = data
@@ -115,15 +115,20 @@ export class Dashboard extends Component {
                                 <Nav.Item>
                                     <Nav.Link eventKey="first">Overview</Nav.Link>
                                 </Nav.Item>
+                                {profile.premium &&
+                                <Nav.Item>
+                                    <Nav.Link eventKey="second">Message An Analyst</Nav.Link>
+                                </Nav.Item>
+                                }
                                 <br />
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Buy Cryptocurrency</Nav.Link>
+                                    <Nav.Link eventKey="third">Buy Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="third">Sell Cryptocurrency</Nav.Link>
+                                    <Nav.Link eventKey="fourth">Sell Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="fourth">Transfer Cryptocurrency</Nav.Link>
+                                    <Nav.Link eventKey="fifth">Transfer Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>
@@ -134,15 +139,20 @@ export class Dashboard extends Component {
                                     <OverviewAlert profile = {profile} finalData= {this.state.finalData} />
                                     <Overview  profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>
+                                {profile.premium &&
                                 <Tab.Pane eventKey="second">
+                                    <Messaging users = {this.props.users} messages = {this.props.messages} message = {this.props.message} auth = {this.props.auth} />
+                                </Tab.Pane>
+                                }
+                                <Tab.Pane eventKey="third">
                                     <OverviewAlert detailed profile = {profile} finalData= {this.state.finalData} />
                                     <Buy profile = {profile}/>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="third">
+                                <Tab.Pane eventKey="fourth">
                                     <OverviewAlert detailed profile = {profile} finalData= {this.state.finalData} />
                                     <Sell profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="fourth">
+                                <Tab.Pane eventKey="fifth">
                                     <OverviewAlert detailed profile = {profile} finalData= {this.state.finalData} />
                                     <Transfer reinitData = {this.reinitData} profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>
@@ -163,13 +173,15 @@ const mapStateToProps = (state) => {
         transactions: state.firestore.ordered.transactions,
         auth : state.firebase.auth,
         profile : state.firebase.profile,
-        users : state.firestore.ordered.users
+        users : state.firestore.ordered.users,
+        messages : state.firestore.ordered.messages
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        transact : (transaction) => dispatch(Transact(transaction))
+        transact : (transaction) => dispatch(Transact(transaction)),
+        message : (oldmessages,message) => dispatch(Message(oldmessages,message))
     }
 }
 
@@ -178,6 +190,7 @@ export default compose(
     firestoreConnect([
         {collection: "transactions", orderBy : ["timestamp"]},
         {collection: "users"},
-        {collection: "broadcasts", orderBy:["timestamp","desc"]}
+        {collection: "broadcasts", orderBy:["timestamp","desc"]},
+        {collection: "messages"}
     ])
 )(Dashboard)
