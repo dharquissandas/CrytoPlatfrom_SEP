@@ -27,7 +27,7 @@ export const Broadcasts = (props) => {
                     return(
                         <Card className="notif">
                             <Card.Header className="notifHeader">
-                                <strong className="mr-auto">Broadcast</strong>
+                                <strong style={{marginRight:"2em"}}>Broadcast</strong>
                                 <small>{moment(item.timestamp.toDate()).calendar()}</small>
                             </Card.Header>
                                 <Card.Body className="notifBody">

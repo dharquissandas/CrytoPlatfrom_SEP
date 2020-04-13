@@ -26,6 +26,8 @@ export class BroadcastMessage extends Component {
             check : true,
             message : "Broadcast Successful"
         })
+
+        document.getElementById("broadcast").reset();
     }
 
     render() {

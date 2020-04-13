@@ -29,6 +29,8 @@ export class MessageList extends Component {
         }
 
         this.props.message(this.props.messages,a);
+        document.getElementById("messageform").reset();
+
     }
 
     render() {

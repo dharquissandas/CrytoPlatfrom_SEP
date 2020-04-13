@@ -20,6 +20,8 @@ export class Messaging extends Component {
         }
         let userm = idMessageSearch(this.props.messages, this.props.auth.uid)
         this.props.message(userm,a)
+        document.getElementById("messageform").reset();
+
     }
 
     handleChange = (e) => {

@@ -31,7 +31,7 @@ const SignedInLinks = (props) => {
                 </OverlayTrigger>
                 }
 
-                {props.profile.account === "analyst" &&
+                {props.profile.account !== "trader" &&
                 <OverlayTrigger
                 trigger="click"
                 key="bottom"
