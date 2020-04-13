@@ -46,6 +46,9 @@ export class PaymentInformation extends Component {
                 message : "Successfully Updated"
             })
         }
+
+        document.getElementById("payment").reset();
+
     }
 
     render() {
@@ -71,24 +74,24 @@ export class PaymentInformation extends Component {
                         <Form.Row>
                             <Form.Group as={Col} controlId="bankAccountNumber">
                             <Form.Label>Previous Bank Number</Form.Label>
-                            <Form.Control type="text" maxLength="8" required placeholder="Previous Bank Account Number" onChange={this.handleChange} />
+                            <Form.Control type="text" maxLength="8" minLength="8" pattern="[0-9]{8}" required placeholder="Previous Bank Account Number" onChange={this.handleChange} />
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="sortCode">
                             <Form.Label>Previous Sort Code</Form.Label>
-                            <Form.Control type="text" maxLength="6" required placeholder="Previous Sort Code" onChange={this.handleChange} />
+                            <Form.Control type="text" maxLength="6" minLength="6" pattern="[0-9]{6}" required placeholder="Previous Sort Code" onChange={this.handleChange} />
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="newbankAccountNumber">
                             <Form.Label>Bank Number</Form.Label>
-                            <Form.Control type="text" maxLength="8" required placeholder="Bank Account Number" onChange={this.handleChange} />
+                            <Form.Control type="text" maxLength="8" minLength="8" pattern="[0-9]{8}" required placeholder="Bank Account Number" onChange={this.handleChange} />
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="newsortCode">
                             <Form.Label>Sort Code</Form.Label>
-                            <Form.Control type="text" maxLength="6" required placeholder="Sort Code" onChange={this.handleChange} />
+                            <Form.Control type="text" maxLength="6" minLength="6" pattern="[0-9]{6}" required placeholder="Sort Code" onChange={this.handleChange} />
                             </Form.Group>
                         </Form.Row>
                         </Form>

@@ -27,17 +27,28 @@ export class AccountInformation extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        let u = {
-            firstname : this.state.firstname,
-            lastname : this.state.lastname,
-            username : this.state.username
+        if (!/\S/.test(this.state.firstname) || !/\S/.test(this.state.lastname) || !/\S/.test(this.state.username)) {
+            this.setState({
+                check : true,
+                message : "Data Invalid",
+                firstname : this.props.profile.firstname,
+                lastname : this.props.profile.lastname,
+                username : this.props.profile.username,
+            })
         }
-        this.props.accountUpdate(u)
-
-        this.setState({
-            check : true,
-            message : "Successfully Updated"
-        })
+        else{
+            let u = {
+                firstname : this.state.firstname,
+                lastname : this.state.lastname,
+                username : this.state.username
+            }
+            this.props.accountUpdate(u)
+    
+            this.setState({
+                check : true,
+                message : "Successfully Updated"
+            })
+        }
     }
 
     unsub = (e) => {
@@ -77,7 +88,11 @@ export class AccountInformation extends Component {
                                 <Form.Control type="text" placeholder="Username" required value={this.state.username} onChange={this.handleChange} />
                             </Form.Group>
                         </Form>
-                    {this.state.check ? <Alert variant="success">{this.state.message}</Alert> : null}
+                    {this.state.check ? 
+                        this.state.message === "Successfully Updated" ?
+                    <Alert variant="success">{this.state.message}</Alert>:
+                    <Alert variant="danger">{this.state.message}</Alert>
+                    : null}
                     </Card.Body>
                     <Card.Footer>
                     <Button variant="success" form="updateinfo" type="submit">Update</Button>
