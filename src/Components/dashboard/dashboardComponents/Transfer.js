@@ -89,8 +89,6 @@ export class Transfer extends Component {
                     transfermessage : "Transaction Complete"
                 })
                 document.getElementById("transfer").reset();
-
-                this.props.reinitData()
             }
         }
     }
@@ -99,8 +97,8 @@ export class Transfer extends Component {
     render() {
         const { auth, users } = this.props;
         let items = userData(users, auth.uid, "trader")
+        this.
         return (
-            <div>
             <Card>
             <Card.Header as="h6">Transfer Cryptocurrency</Card.Header>
             <Card.Body>

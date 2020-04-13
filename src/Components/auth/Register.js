@@ -50,6 +50,12 @@ class Register extends Component {
                 issue : true
             })
         }
+        else if(!/\S/.test(this.state.firstname) || !/\S/.test(this.state.lastname) || !/\S/.test(this.state.username) || !/\S/.test(this.state.password)) {
+            this.setState({
+                checkresult : "Invalid Data",
+                issue : true
+            })
+        }
         else{
             if(account === "trader"){
                 this.props.traderSignUp(this.state)

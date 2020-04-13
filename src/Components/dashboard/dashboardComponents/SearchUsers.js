@@ -32,7 +32,6 @@ export class SearchUsers extends Component {
         })
     }
     
-
     handleSubmit = (e) => {
         e.preventDefault()
         if(typeof this.state.user !== 'undefined'){
@@ -42,10 +41,18 @@ export class SearchUsers extends Component {
             })
         }
         else if(this.state.userId !== ""){
-            this.setState({
-                resultscheck : true,
-                results : [idSearch(this.state.userId,this.props.users)]
-            })
+            let r = idSearch(this.state.userId,this.props.users)
+            if(r == null){
+                this.setState({
+                    resultscheck : true,
+                    results : []
+                })
+            }else{
+                this.setState({
+                    resultscheck : true,
+                    results : [r]
+                })
+            }
         }
         else if(this.state.userType !== ""){
             this.setState({
@@ -105,12 +112,13 @@ export class SearchUsers extends Component {
                     <Alert variant="secondary">
                         {this.state.results.length === 0 ? 
                         <h6>No results found</h6>:
-                        <h6>Results - {this.state.results.length} results</h6>}
+                        <h6>Results - {this.state.results.length} Results</h6>}
                     </Alert>
                     </div>
                 }
                 {this.state.resultscheck &&
-                this.state.results !== null && this.state.results.map(item => {
+                this.state.results !== null && this.state.results.length !== 0 && this.state.results.map(item => {
+                    console.log(this.state.results)
                     return(
                         <Card className="notif" key={item.id}>
                             <Card.Header className="notifHeader">

@@ -151,12 +151,12 @@ export class FiatWallet extends Component {
                                     <Form.Row>
                                         <Form.Group as={Col} controlId="rbankAccountNumber">
                                             <Form.Label>Account Number</Form.Label>
-                                            <Form.Control required type="text" minLength="8" maxLength="8" placeholder="Bank Account number" onChange={this.handleChange} />
+                                            <Form.Control required type="text" minLength="8" maxLength="8" pattern="[0-9]{8}" placeholder="Bank Account number" onChange={this.handleChange} />
                                         </Form.Group>
 
                                         <Form.Group as={Col} controlId="rsortCode">
                                             <Form.Label>Sort Code</Form.Label>
-                                            <Form.Control required type="text" minLength="6" maxLength="6" placeholder="Sort Code" onChange={this.handleChange} />
+                                            <Form.Control required type="text" minLength="6" maxLength="6" pattern="[0-9]{6}" placeholder="Sort Code" onChange={this.handleChange} />
                                         </Form.Group>
                                     </Form.Row>
 
