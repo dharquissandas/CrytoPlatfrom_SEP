@@ -1,9 +1,5 @@
 const initState = {
-    transactions:[
-        {id: '1', transactiontype:'buy', cryptocurrency:'a', amount:'5'},
-        {id: '2', transactiontype:'buy', cryptocurrency:'b', amount:'6'},
-        {id: '3', transactiontype:'buy', cryptocurrency:'c', amount:'7'}
-    ]
+    transactions:[]
 }
 
 const transactionReducer = (state = initState, action) => {

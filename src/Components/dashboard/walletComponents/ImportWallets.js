@@ -2,27 +2,70 @@ import React, { Component } from 'react'
 import {Card, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Import } from '../../store/actions/transactionActions';
+import { idSearch } from '../../utils/DashboardUtils';
 import FileUploader from 'file-uploader-js';
 
 export class ImportWallets extends Component {
     state = {
-        imported : false
+        imported : false,
+        importcheck : false,
+        message : "",
+        tcheck : false
     }
 
-    uploadedJson = (fileData) => {
-        let file = JSON.parse(fileData)
-        for(let i = 0; i < file.length; i++){
-            this.props.import(file[i])
-        }
-
+    uploadedJson = async (fileData) => {
         this.setState({
-            imported : true
+            message : ""
         })
-
-        window.location.reload()
+        let file;
+        try {
+            file = JSON.parse(fileData)
+            if(file[0].userId === this.props.auth.uid){
+                for(let i = 0; i<file.length; i++){
+                    if(idSearch(file[i].id,this.props.transactions) != null){
+                        this.setState({tcheck : true})
+                        break
+                    }
+                }
+                if(!this.state.tcheck){
+                    for(let i = 0; i < file.length; i++){
+                        this.props.import(file[i])
+                    }
+                    setTimeout(() => {
+                            this.setState({
+                                imported : true,        
+                                message : "Successfully Imported, Please wait a short while for the import to be reflected"
+                            })
+                            window.location.reload()
+                    }, 800);
+                }
+                else{
+                    this.setState({ 
+                        imported : true,
+                        importcheck : true,
+                        message : "Already Imported"
+                    })
+                }
+            }
+            else{
+                this.setState({ 
+                    imported : true,
+                    importcheck : true,
+                    message : "Unautherised Import"
+                })
+            }
+        }
+        catch(err) { 
+            this.setState({ 
+                imported : true,
+                importcheck : true,
+                message : "Invalid Import File"
+            })
+        }
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <Card>
@@ -38,10 +81,10 @@ export class ImportWallets extends Component {
                                 />
                         </Alert>
                         {this.state.imported ?
-                            this.props.importerror ?
-                                <Alert variant="danger">{this.props.importerror}</Alert> :  
-                                <Alert variant="success">Import Success, please wait a short while for the import to be reflected on the system</Alert>
-                                :
+                            this.state.importcheck ?
+                            <Alert variant="danger">{this.state.message}</Alert> :
+                            <Alert variant="success">{this.state.message}</Alert>
+                            :
                             null
                         }
                     </Card.Body>

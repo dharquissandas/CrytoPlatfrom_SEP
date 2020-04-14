@@ -124,7 +124,7 @@ export class FiatWallet extends Component {
                                             <InputGroup.Prepend>
                                                 <InputGroup.Text id="inputGroupPrepend">£</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <Form.Control required type="number" min="0.01" step="any" placeholder="Amount" onChange={this.handleChange} />
+                                            <Form.Control required type="number" min="0.01" max="1000.00" step="any" placeholder="Amount" onChange={this.handleChange} />
                                         </InputGroup>
                                     </Form.Group>
                                 </Form>

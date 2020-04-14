@@ -11,7 +11,7 @@ export class SearchUsers extends Component {
         check : false,
         message : "",
         results : null,
-        resultscheck : false
+        resultscheck : false,
     }
 
     formatText = (account) => {
@@ -25,6 +25,7 @@ export class SearchUsers extends Component {
             [e.target.id]: e.target.value
         })
     }
+
     
     setUser = (items) => {
         this.setState({
@@ -37,7 +38,7 @@ export class SearchUsers extends Component {
         if(typeof this.state.user !== 'undefined'){
             this.setState({
                 resultscheck : true,
-                results : [findUser(this.props.auth.uid, this.props.users,this.state.user, "any")]
+                results : [findUser(this.props.auth.uid, this.props.users,this.state.user, "any")],
             })
         }
         else if(this.state.userId !== ""){
@@ -65,6 +66,7 @@ export class SearchUsers extends Component {
     }
 
     render() {
+        console.log(this.state.qsearch)
         let items = userData(this.props.users, this.props.auth.uid, "any")
         return (
             <div>
@@ -85,20 +87,32 @@ export class SearchUsers extends Component {
                                     onItemsChanged={this.setUser.bind(this)}
                                     />
                             </Form.Group>
-
+                            <hr></hr>
                             <Form.Group controlId="userId">
                                 <Form.Label>User ID</Form.Label>
-                                <Form.Control autocomplete="off" type="text"  placeholder="User ID" min="28" max="28" onChange={this.handleChange} />
+                                {this.state.user == null ?
+                                <Form.Control autocomplete="off" type="text"  placeholder="User ID" min="28" max="28" onChange={this.handleChange} /> :
+                                <Form.Control autocomplete="off" type="text" disabled placeholder="User ID" min="28" max="28" onChange={this.handleChange} />
+                                }
                             </Form.Group>
 
                             <Form.Group controlId="userType">
                                 <Form.Label>User Type</Form.Label>
+                                {this.state.user == null ?
                                 <Form.Control onChange={this.handleChange} as="select" custom>
                                     <option>Any</option>
                                     <option>Trader</option>
                                     <option>Analyst</option>
                                     <option>Administrator</option>
-                                </Form.Control>
+                                </Form.Control> 
+                                :
+                                <Form.Control disabled onChange={this.handleChange} as="select" custom>
+                                    <option>Any</option>
+                                    <option>Trader</option>
+                                    <option>Analyst</option>
+                                    <option>Administrator</option>
+                                </Form.Control>                               
+                                }
                             </Form.Group>
                         </Form>
                     </Card.Body>    

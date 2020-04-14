@@ -80,6 +80,7 @@ export const bSearch = (broadcasts, criteria) => {
 
 export const idSearch = (id, users) => {
     for(let i = 0; i<users.length; i++){
+        console.log(users[i])
         if(users[i].id === id){
             return users[i]
         }

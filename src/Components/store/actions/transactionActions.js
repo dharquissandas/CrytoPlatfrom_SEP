@@ -93,11 +93,11 @@ export const Import = (transaction) => {
                     }
                 }
                 else{
-                    dispatch({type: 'IMPORT_ERROR', err: "Unautherised Import, Please Close & Try Again"})                    
+                    dispatch({type: 'IMPORT_ERROR', err: "Unautherised Import"})                    
                 }
             }
             else{
-            dispatch({type: 'IMPORT_ERROR', err: "Already Imported, Please Close & Try Again"})
+            dispatch({type: 'IMPORT_ERROR', err: "Already Imported"})
           }
         });
     }

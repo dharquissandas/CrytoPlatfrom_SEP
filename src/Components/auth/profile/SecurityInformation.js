@@ -28,7 +28,7 @@ export class SecurityInformation extends Component {
         e.preventDefault()
         if(this.state.oldidProof !== this.props.profile.idProof){
             this.setState({
-                check : false,
+                check : true,
                 message : "Invalid Credentials"
             })
         }
@@ -69,9 +69,10 @@ export class SecurityInformation extends Component {
                             </Form.Group>
                         </Form>
                         {this.state.check  ? 
-                            <Alert variant="success"><div><label>{this.state.message}</label></div></Alert>:
                             this.state.message === "Successfully Updated" ?
-                            <Alert variant="danger"><div><label>{this.state.message}</label></div></Alert>:
+                            <Alert variant="success"><div><label>{this.state.message}</label></div></Alert>:
+                            <Alert variant="danger"><div><label>{this.state.message}</label></div></Alert>
+                            :
                             null
                         }
                     </Card.Body>
