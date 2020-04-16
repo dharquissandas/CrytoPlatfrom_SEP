@@ -99,9 +99,10 @@ export class FiatWallet extends Component {
         const sc = "XXXX" +  profile.sortCode.charAt(4) + profile.sortCode.charAt(5) 
         return (
             <div>
+                <br></br>
                 <Row>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Add Fiat Currency</Card.Header>
                             <Card.Body>
                                 <Form autocomplete="off" id="fiatTransact" onSubmit={this.handleAddSubmit}>
@@ -124,7 +125,7 @@ export class FiatWallet extends Component {
                                             <InputGroup.Prepend>
                                                 <InputGroup.Text id="inputGroupPrepend">£</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <Form.Control required type="number" min="0.01" max="1000.00" step="any" placeholder="Amount" onChange={this.handleChange} />
+                                            <Form.Control required type="number" min="0.01" max="1000.00" step="0.01" placeholder="Amount" onChange={this.handleChange} />
                                         </InputGroup>
                                     </Form.Group>
                                 </Form>
@@ -133,12 +134,12 @@ export class FiatWallet extends Component {
                                 null}
                             </Card.Body>
                             <Card.Footer>
-                                    <Button form="fiatTransact"  type="submit" variant="success">Transact</Button>
+                                    <Button form="fiatTransact"  type="submit" variant="info">Transact</Button>
                             </Card.Footer>
                         </Card>
                     </Col>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Fiat Currency Refund</Card.Header>
                             <Card.Body> 
                                 <h6>Please enter the details of the card below for verification</h6>
@@ -169,7 +170,7 @@ export class FiatWallet extends Component {
                                         <InputGroup.Prepend>
                                             <InputGroup.Text id="inputGroupPrepend">£</InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <Form.Control required type="number" min="0.01" max={profile.fiatAmount} step="any" placeholder="Amount" onChange={this.handleChange} />
+                                        <Form.Control required type="number" min="0.01" max={profile.fiatAmount} step="0.01" placeholder="Amount" onChange={this.handleChange} />
                                     </InputGroup>
                                     </Form.Group>                     
                                 </Form>
@@ -182,7 +183,7 @@ export class FiatWallet extends Component {
                                 }
                             </Card.Body>
                             <Card.Footer>
-                                    <Button form="fiatRefund" type="submit" variant="success" >Refund</Button>
+                                    <Button form="fiatRefund" type="submit" variant="info" >Refund</Button>
                             </Card.Footer>
                         </Card>
                     </Col>

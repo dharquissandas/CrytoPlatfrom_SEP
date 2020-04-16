@@ -86,8 +86,15 @@ export class Transfer extends Component {
                 await this.props.transact(info)
                 this.setState({
                     transfercheck : true,
-                    transfermessage : "Transaction Complete"
+                    transfermessage : "Transaction Complete, Please Wait a short while the transfer to be reflected"
                 })
+
+                setTimeout(() => {
+                    window.location.reload()
+            }, 1000);
+
+
+
                 document.getElementById("transfer").reset();
             }
         }
@@ -99,43 +106,44 @@ export class Transfer extends Component {
         let items = userData(users, auth.uid, "trader")
         return (
             <div>
-            <Card>
-            <Card.Header as="h6">Transfer Cryptocurrency</Card.Header>
-            <Card.Body>
-                <Form autocomplete="off" id="transfer" onSubmit={this.handleTransfer}>
-                    <Form.Group>
-                        <Form.Label>Recipient</Form.Label>
-                        <Search items={items}
-                            placeholder='Search Email of Recipient'
-                            maxSelected={1}
-                            multiple={true}
-                            autocomplete="off"
-                            onItemsChanged={this.setTransferRecipient.bind(this)} />
-                    </Form.Group>
-                    <Form.Group controlId="transfercryptocurrency">
-                        <Form.Label>Cryptocurrency</Form.Label>
-                        <Form.Control required onChange={this.handleChange} as="select" custom>
-                            <option>Choose Cryptocurrency</option>
-                            <option>{this.state.cc1Name}</option>
-                            <option>{this.state.cc2Name}</option>
-                            <option>{this.state.cc3Name}</option>
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="transferamount">
-                        <Form.Label>Amount</Form.Label>
-                        <Form.Control required type="number" min="1" max="10" placeholder="Amount" onChange={this.handleChange} />
-                    </Form.Group>
-                    {this.state.transfercheck  ? 
-                        this.state.transfermessage === "Transaction Complete" ?
-                        <Alert variant="success"><div><label>{this.state.transfermessage}</label></div></Alert>:
-                        <Alert variant="danger"><div><label>{this.state.transfermessage}</label></div></Alert>
-                        :
-                        null
-                    }   
-                </Form>
-            </Card.Body>
-            <Card.Footer><Button variant="success" form="transfer" type="submit">Transfer</Button></Card.Footer>
-            </Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
+                <Card.Header as="h6">Transfer Cryptocurrency</Card.Header>
+                <Card.Body>
+                    <Form autocomplete="off" id="transfer" onSubmit={this.handleTransfer}>
+                        <Form.Group id="search">
+                            <Form.Label>Recipient</Form.Label>
+                            <Search items={items}
+                                placeholder='Search Email of Recipient'
+                                maxSelected={1}
+                                multiple={true}
+                                autocomplete="off"
+                                onItemsChanged={this.setTransferRecipient.bind(this)} />
+                        </Form.Group>
+                        <Form.Group controlId="transfercryptocurrency">
+                            <Form.Label>Cryptocurrency</Form.Label>
+                            <Form.Control required onChange={this.handleChange} as="select" custom>
+                                <option>Choose Cryptocurrency</option>
+                                <option>{this.state.cc1Name}</option>
+                                <option>{this.state.cc2Name}</option>
+                                <option>{this.state.cc3Name}</option>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId="transferamount">
+                            <Form.Label>Amount</Form.Label>
+                            <Form.Control required type="number" min="1" max="10" placeholder="Amount" onChange={this.handleChange} />
+                        </Form.Group>
+                        {this.state.transfercheck  ? 
+                            this.state.transfermessage === "Transaction Complete, Please Wait a short while the transfer to be reflected" ?
+                            <Alert variant="success"><div><label>{this.state.transfermessage}</label></div></Alert>:
+                            <Alert variant="danger"><div><label>{this.state.transfermessage}</label></div></Alert>
+                            :
+                            null
+                        }   
+                    </Form>
+                </Card.Body>
+                <Card.Footer><Button variant="info" form="transfer" type="submit">Transfer</Button></Card.Footer>
+                </Card>
             </div>
         )
     }

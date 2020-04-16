@@ -66,7 +66,7 @@ export class SearchTransactions extends Component {
     render() {
         return (
             <div>
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">
                         Search Transactions
                     </Card.Header>
@@ -109,23 +109,23 @@ export class SearchTransactions extends Component {
                         }
                     </Card.Body>    
                     <Card.Footer>
-                        <Button variant="success" type="submit" form="search">Search</Button>
+                        <Button variant="info" type="submit" form="search">Search</Button>
                     </Card.Footer>
                 </Card>
                 {this.state.resultscheck &&
                     <div>
                         <br></br>
-                    <Alert variant="secondary">
-                        {this.state.results.length === 0 ? 
-                        <h6>No results found</h6>:
-                        <h6>Results - {this.state.results.length} results</h6>}
-                    </Alert>
+                        {this.state.results.length !== 0 ?
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Results - {this.state.results.length} results</Card.Body></Card>:
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">No Results</Card.Body></Card>
+                        }                        
                     </div>
                 }
+                <br></br>
                 {this.state.resultscheck &&
                 this.state.results !== null && this.state.results.map(item => {
                     return(
-                        <Card className="notif" key={item.id}>
+                        <Card bg="dark" text="white" border="info" className="notif" key={item.id}>
                             <Card.Header className="notifHeader">
                             <strong  className="mr-auto">{this.renderText(item.transactionType)}</strong>
                             <small>{moment(item.timestamp.toDate()).calendar()}</small>

@@ -25,9 +25,9 @@ export const Broadcasts = (props) => {
                 {broadcasts && check(props) && broadcasts.map(item => {
                     if(isToday(item.timestamp.toDate())){
                     return(
-                        <Card className="notif">
+                        <Card bg="dark" text="white" border="info" className="notif">
                             <Card.Header className="notifHeader">
-                                <strong style={{marginRight:"2em"}}>Broadcast</strong>
+                                <strong className="mr-auto">Broadcast</strong>
                                 <small>{moment(item.timestamp.toDate()).calendar()}</small>
                             </Card.Header>
                                 <Card.Body className="notifBody">
@@ -42,7 +42,7 @@ export const Broadcasts = (props) => {
                 }) }
         </div>:
         <div>
-            <Card className="notif">
+            <Card bg="dark" text="white" border="info" className="notif">
                 <Card.Body className="notifBody">
                     <h6>No Broadcasts for Today</h6>
                 </Card.Body>

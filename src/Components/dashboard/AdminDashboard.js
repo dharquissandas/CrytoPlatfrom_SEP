@@ -66,24 +66,24 @@ export class AdminDashboard extends Component {
         return (
             this.state.loaded ?
             <div>
-            <Navigationbar />
+            <Navigationbar place="dashboard" />
             <br></br>
             <Tab.Container unmountOnExit defaultActiveKey="first">
                 <Row style={{marginRight : "0px"}}>
                     <Col sm={3}>
                         <Nav variant="pills" className="ml-1 flex-column">
                             <Nav.Item>
-                                <Nav.Link eventKey="first">Overview</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="first">Overview</Nav.Link>
                             </Nav.Item>
                             <br />
                             <Nav.Item>
-                                <Nav.Link eventKey="second">Transactions</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="second">Transactions</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="third">Broadcasts</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="third">Broadcasts</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="fourth">Users</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="fourth">Users</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>

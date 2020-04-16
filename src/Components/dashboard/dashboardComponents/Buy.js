@@ -89,7 +89,8 @@ export class Buy extends Component {
     render() {
         return (
             <div>
-                <Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                 <Card.Header as="h6">Buy Cryptocurrency</Card.Header>
                 <Card.Body>
                         <Form autocomplete="off" id="buy" onSubmit ={this.handleBuySubmit}>
@@ -114,7 +115,7 @@ export class Buy extends Component {
                             }
                         </Form>
                 </Card.Body>
-                <Card.Footer><Button variant="success" form="buy" type="submit">Purchase</Button></Card.Footer>
+                <Card.Footer><Button variant="info" form="buy" type="submit">Purchase</Button></Card.Footer>
             </Card>
         </div>
         )

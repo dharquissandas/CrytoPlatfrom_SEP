@@ -93,33 +93,36 @@ export class Sell extends Component {
 
     render() {
         return (
-            <Card>
-            <Card.Header as="h6">Sell Cryptocurrency</Card.Header>
-            <Card.Body>
-                    <Form autocomplete="off" id="sell" onSubmit ={this.handleSellSubmit}>
-                        <Form.Group controlId="sellcryptocurrency">
-                            <Form.Label>Cryptocurrency</Form.Label>
-                            <Form.Control required onChange={this.handleChange} as="select" custom>
-                                <option>Choose Cryptocurrency</option>
-                                <option>{this.state.cc1Name}</option>
-                                <option>{this.state.cc2Name}</option>
-                                <option>{this.state.cc3Name}</option>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group controlId="sellamount">
-                            <Form.Label>Amount</Form.Label>
-                            <Form.Control required type="number" min="1" max="10" placeholder="Amount" onChange={this.handleChange} />
-                        </Form.Group>
-                        {this.state.sellcheck  ? 
-                            <Alert variant="danger"><div><label>{this.state.sellmessage}</label></div></Alert>:
-                            this.state.sellmessage === "Transaction Complete" ?
-                            <Alert variant="success"><div><label>{this.state.sellmessage}</label></div></Alert>:
-                            null
-                        }   
-                        </Form>
-            </Card.Body>
-            <Card.Footer><Button variant="success" form="sell" type="submit">Sell</Button></Card.Footer>
-            </Card>
+            <div>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
+                <Card.Header as="h6">Sell Cryptocurrency</Card.Header>
+                <Card.Body>
+                        <Form autocomplete="off" id="sell" onSubmit ={this.handleSellSubmit}>
+                            <Form.Group controlId="sellcryptocurrency">
+                                <Form.Label>Cryptocurrency</Form.Label>
+                                <Form.Control required onChange={this.handleChange} as="select" custom>
+                                    <option>Choose Cryptocurrency</option>
+                                    <option>{this.state.cc1Name}</option>
+                                    <option>{this.state.cc2Name}</option>
+                                    <option>{this.state.cc3Name}</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group controlId="sellamount">
+                                <Form.Label>Amount</Form.Label>
+                                <Form.Control required type="number" min="1" max="10" placeholder="Amount" onChange={this.handleChange} />
+                            </Form.Group>
+                            {this.state.sellcheck  ? 
+                                <Alert variant="danger"><div><label>{this.state.sellmessage}</label></div></Alert>:
+                                this.state.sellmessage === "Transaction Complete" ?
+                                <Alert variant="success"><div><label>{this.state.sellmessage}</label></div></Alert>:
+                                null
+                            }   
+                            </Form>
+                </Card.Body>
+                <Card.Footer><Button variant="info" form="sell" type="submit">Sell</Button></Card.Footer>
+                </Card>
+            </div>
         )
     }
 }

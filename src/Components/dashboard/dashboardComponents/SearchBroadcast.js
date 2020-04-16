@@ -63,7 +63,7 @@ export class SearchTransactions extends Component {
         let items = userData(this.props.users, this.props.auth.uid, "analyst")
         return (
             <div>
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">
                         Search Broadcasts
                     </Card.Header>
@@ -96,23 +96,23 @@ export class SearchTransactions extends Component {
                         </Form>
                     </Card.Body>    
                     <Card.Footer>
-                        <Button variant="success" type="submit" form="search">Search</Button>
+                        <Button variant="info" type="submit" form="search">Search</Button>
                     </Card.Footer>
                 </Card>
                 {this.state.resultscheck &&
                     <div>
                         <br></br>
-                    <Alert variant="secondary">
-                        {this.state.results.length === 0 ? 
-                        <h6>No results found</h6>:
-                        <h6>Results - {this.state.results.length} results</h6>}
-                    </Alert>
+                        {this.state.results.length !== 0 ?
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Results - {this.state.results.length} results</Card.Body></Card>:
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">No Results</Card.Body></Card>
+                        }   
                     </div>
                 }
+                <br></br>
                 {this.state.resultscheck &&
                 this.state.results !== null && this.state.results.map(item => {
                     return(
-                        <Card className="notif">
+                        <Card bg="dark" text="white" border="info" className="notif">
                             <Card.Header className="notifHeader">
                                 <strong className="mr-auto">Broadcast</strong>
                                 <small>{moment(item.timestamp.toDate()).calendar()}</small>
@@ -123,7 +123,7 @@ export class SearchTransactions extends Component {
                                 <p>- {item.email}</p>
                             </Card.Body>
                             <Card.Footer>
-                                <Button variant="danger" type="submit" onClick={() => this.handleDelete(item.id)}>Delete</Button>
+                                <Button variant="outline-info" type="submit" onClick={() => this.handleDelete(item.id)}>Delete</Button>
                             </Card.Footer>
                         </Card>
                     )

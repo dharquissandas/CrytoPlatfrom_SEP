@@ -41,8 +41,9 @@ export class MessageList extends Component {
                 null 
                 :
                 <div>
-                <Alert variant="dark">Messages</Alert>
-                <Card>
+                    <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Messages</Card.Body></Card>
+                    <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">Reply</Card.Header>
                     <Card.Body>
                         <Form id="messageform" onSubmit={this.handleSubmit}>
@@ -53,13 +54,13 @@ export class MessageList extends Component {
                         </Form>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="success" type="submit" form="messageform">Send</Button>
+                        <Button variant="info" type="submit" form="messageform">Send</Button>
                     </Card.Footer>
                 </Card>
                 <br></br>
                 {this.state.allMessages !== null && this.state.allMessages.slice(0,10).map(item => {
                     return(
-                    <Card className="notif">
+                    <Card bg="dark" text="white" border="info" className="notif">
                         <Card.Header className="notifHeader">
                         <strong className="mr-auto">
                             {

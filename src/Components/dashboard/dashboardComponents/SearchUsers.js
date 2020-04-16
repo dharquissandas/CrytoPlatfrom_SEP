@@ -70,7 +70,7 @@ export class SearchUsers extends Component {
         let items = userData(this.props.users, this.props.auth.uid, "any")
         return (
             <div>
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">
                         Search Users
                     </Card.Header>
@@ -117,24 +117,24 @@ export class SearchUsers extends Component {
                         </Form>
                     </Card.Body>    
                     <Card.Footer>
-                        <Button variant="success" type="submit" form="users">Search</Button>
+                        <Button variant="info" type="submit" form="users">Search</Button>
                     </Card.Footer>
                 </Card>
                 {this.state.resultscheck &&
                     <div>
                         <br></br>
-                    <Alert variant="secondary">
-                        {this.state.results.length === 0 ? 
-                        <h6>No results found</h6>:
-                        <h6>Results - {this.state.results.length} Results</h6>}
-                    </Alert>
+                        {this.state.results.length !== 0 ?
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Results - {this.state.results.length} results</Card.Body></Card>:
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">No Results</Card.Body></Card>
+                        }   
                     </div>
                 }
+                <br></br>
                 {this.state.resultscheck &&
                 this.state.results !== null && this.state.results.length !== 0 && this.state.results.map(item => {
                     console.log(this.state.results)
                     return(
-                        <Card className="notif" key={item.id}>
+                        <Card bg="dark" text="white" border="info" className="notif" key={item.id}>
                             <Card.Header className="notifHeader">
                             <strong className="mr-auto">{item.firstname} {item.lastname}</strong>
                             <small>{item.account === "trader" && item.premium ?

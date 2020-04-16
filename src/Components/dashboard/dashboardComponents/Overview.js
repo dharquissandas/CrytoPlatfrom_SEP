@@ -28,9 +28,9 @@ export class Overview extends Component {
                 <br />
                 <Row>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Recent Prices - {this.state.cc1Name}</Card.Header>
-                            <ListGroup variant="flush">
+                            <ListGroup bg="dark" text="white" border="primary" variant="flush">
                                 {this.state.cc1Prices.map(item => {
                                     return(
                                         <ListGroup.Item>£{item.toFixed(2)}</ListGroup.Item>
@@ -40,7 +40,7 @@ export class Overview extends Component {
                         </Card>
                     </Col>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Recent Prices - {this.state.cc2Name}</Card.Header>
                             <ListGroup variant="flush">
                                 {this.state.cc2Prices.map(item => {
@@ -52,7 +52,7 @@ export class Overview extends Component {
                         </Card>
                     </Col>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Recent Prices - {this.state.cc3Name}</Card.Header>
                             <ListGroup variant="flush">
                                 {this.state.cc3Prices.map(item => {
@@ -64,6 +64,7 @@ export class Overview extends Component {
                         </Card>
                     </Col>
                 </Row>
+                <br></br>
             </div>
         )
     }

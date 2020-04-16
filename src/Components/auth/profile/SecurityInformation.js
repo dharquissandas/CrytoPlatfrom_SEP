@@ -46,12 +46,15 @@ export class SecurityInformation extends Component {
         const info  = "XXXXXX" + profile.idProof.charAt(6) + profile.idProof.charAt(7) + profile.idProof.charAt(8)
         return (
             <div>
-                <Alert variant="dark">
-                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                <Card bg="dark" text="white" border="info" >
+                    <Card.Header as="h6">At A Glance</Card.Header>
+                    <Card.Body style={{padding:"0.8em", paddingLeft:"1.25rem"}}>
                     {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
                     {auth.email}
-                </Alert>
-                <Card>
+                    </Card.Body>
+                </Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">Security Information</Card.Header>
                     <Card.Body>
                         <Alert variant="dark">
@@ -77,7 +80,7 @@ export class SecurityInformation extends Component {
                         }
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="success" form="id" type="submit">Update</Button>
+                        <Button variant="info" form="id" type="submit">Update</Button>
                     </Card.Footer>
                 </Card>
             </div>

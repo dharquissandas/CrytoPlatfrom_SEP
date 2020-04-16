@@ -66,24 +66,24 @@ export class AnalystDashboard extends Component {
         return (
             this.state.loaded && messages ?
             <div>
-            <Navigationbar />
+            <Navigationbar place="dashboard" />
             <br></br>
             <Tab.Container unmountOnExit defaultActiveKey="first">
                 <Row style={{marginRight : "0px"}}>
                     <Col sm={3}>
                         <Nav variant="pills" className="ml-1 flex-column">
                             <Nav.Item>
-                                <Nav.Link eventKey="first">Overview</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="first">Overview</Nav.Link>
                             </Nav.Item>
                             <br />
                             <Nav.Item>
-                                <Nav.Link eventKey="second">Broadcast Message</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="second">Broadcast Message</Nav.Link>
                             </Nav.Item>
                             <Nav.Item >
-                                <Nav.Link style={{display:"flex"}} eventKey="third"><div className="mr-auto">Trader Messages</div>  <div> Unread: {findNCheckedMessages(this.props.messages).length}</div></Nav.Link>
+                                <Nav.Link className="navitems" style={{display:"flex"}} eventKey="third"><div className="mr-auto">Trader Messages</div>  <div> Unread: {findNCheckedMessages(this.props.messages).length}</div></Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link eventKey="fourth">Search Transactions</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="fourth">Search Transactions</Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Col>

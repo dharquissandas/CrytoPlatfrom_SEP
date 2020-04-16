@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Col, Row, Button } from 'react-bootstrap' 
+import { Alert, Col, Row, Button, Card } from 'react-bootstrap' 
 import { cc1 } from '../../cryptocurrencies/cc1'
 import { cc2 } from '../../cryptocurrencies/cc2'
 import { cc3 } from '../../cryptocurrencies/cc3'
@@ -27,14 +27,15 @@ export class OverviewAlert extends Component {
         return (
             this.props.detailed ? 
             <div>
-                <Alert variant="dark">
-                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                <Card bg="dark" text="white" border="info">
+                    <Card.Header as="h6">At A Glance</Card.Header>
+                    <Card.Body className="overalert">
                         <p>Fiat Amount : £{parseFloat(profile.fiatAmount).toFixed(2)}</p>
                         {profile.fiatAmount === "0" && window.location.pathname !== "/wallet" && 
                         <div>
                         <p>You don't have any fiat currency to buy cryptocurrency</p>
                         <Link to="/wallet">
-                            <Button varient="success">Add to Fiat Wallet</Button>
+                            <Button variant="info">Add to Fiat Wallet</Button>
                         </Link>
                         </div>
                         }
@@ -53,17 +54,19 @@ export class OverviewAlert extends Component {
                                 <p> Current {this.state.cc3Name} Amount : {finalData.cc3Amount}</p>
                             </Col>
                         </Row>
-                </Alert>
+                    </Card.Body>
+                </Card>
             </div> :
             <div>
-            <Alert variant="dark">
-                <Alert.Heading as="h5">At A Glance</Alert.Heading>
+            <Card bg="dark" text="white" border="info">
+                <Card.Header as="h6">At A Glance</Card.Header>
+                <Card.Body className="overalert">
                     <p>Fiat Amount : £{parseFloat(profile.fiatAmount).toFixed(2)}</p>
                     {profile.fiatAmount === "0" && 
                     <div>
                     <p>You don't have any fiat currency to buy cryptocurrency</p>
                     <Link to="/wallet">
-                        <Button varient="success">Add to Fiat Wallet</Button>
+                        <Button variant="info">Add to Fiat Wallet</Button>
                     </Link>
                     </div>
                     }
@@ -79,7 +82,9 @@ export class OverviewAlert extends Component {
                             <p> Current {this.state.cc3Name} Amount : {finalData.cc3Amount}</p>
                         </Col>
                     </Row>
-            </Alert>
+                    </Card.Body>
+            </Card>
+            <br></br>
             </div>
         ) 
     }

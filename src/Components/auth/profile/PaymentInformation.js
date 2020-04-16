@@ -57,12 +57,15 @@ export class PaymentInformation extends Component {
         const sc = "XXXX" +  profile.sortCode.charAt(4) + profile.sortCode.charAt(5) 
         return (
             <div>
-                <Alert variant="dark">
-                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                <Card bg="dark" text="white" border="info" >
+                    <Card.Header as="h6">At A Glance</Card.Header>
+                    <Card.Body style={{padding:"0.8em", paddingLeft:"1.25rem"}}>
                     {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
                     {auth.email}
-                </Alert>
-                <Card>
+                    </Card.Body>
+                </Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">Payment Card Information</Card.Header>
                     <Card.Body>
                         <Alert variant="dark">
@@ -104,7 +107,7 @@ export class PaymentInformation extends Component {
                         }
                     </Card.Body>
                     <Card.Footer>
-                    <Button variant="success" form="payment" type="submit">Update</Button>
+                    <Button variant="info" form="payment" type="submit">Update</Button>
                     </Card.Footer>
                 </Card>
             </div>

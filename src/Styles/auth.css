@@ -21,12 +21,3 @@
 #right{
     float: right;
 }
-
-a.nav-link{
-    color: #343a40;
-}
-
-a.nav-link.active{
-    color : white !important;
-    background-color: #343a40 !important;
-}

@@ -61,36 +61,36 @@ export class Wallet extends Component {
         return (
             this.state.loaded && profile.isLoaded ?
             <div>
-                <Navigationbar pass={() => this.setUpgradeModal(true)} />
+                <Navigationbar place="wallet" pass={() => this.setUpgradeModal(true)} />
                 <Upgrade show={this.state.upgradeModal} onHide={() => this.setUpgradeModal(false)} />
                 <ExportModal chosencc ={this.state.chosencc} show={this.state.exportModal} onHide={() => this.setExportModal(false)} />
                 <br></br>
                 <Tab.Container unmountOnExit defaultActiveKey="first">
                     <Row style={{marginRight : "0px"}}>
-                        <Col sm={3}>
+                        <Col sm={3} >
                             <Nav variant="pills" className="ml-1 flex-column">
                                 <Nav.Item>
-                                    <Nav.Link eventKey="first">Fiat Wallet</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="first">Fiat Wallet</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Import Wallet</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="second">Import Wallet</Nav.Link>
                                 </Nav.Item>
                                 <br />
                                 {data.cc1Amount !== 0 ?
                                 <Nav.Item>
-                                    <Nav.Link eventKey="third">{cc1.getName()} wallet</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="third">{cc1.getName()} wallet</Nav.Link>
                                 </Nav.Item> :
                                 null
                                 }
                                 {data.cc2Amount !== 0 ?
                                 <Nav.Item>
-                                    <Nav.Link eventKey="fourth">{cc2.getName()} wallet</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="fourth">{cc2.getName()} wallet</Nav.Link>
                                 </Nav.Item> :
                                 null
                                 }
                                 {data.cc3Amount !== 0 ?
                                 <Nav.Item>
-                                    <Nav.Link eventKey="fifth">{cc3.getName()} wallet</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="fifth">{cc3.getName()} wallet</Nav.Link>
                                 </Nav.Item> :
                                 null
                                 }

@@ -26,48 +26,51 @@ export class CryptoLines extends Component {
         return (
             <Row>
             <Col sm>
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">{this.state.cc1Name}</Card.Header>
                     <Card.Body>
                         <Card.Subtitle>Trend Graph</Card.Subtitle>
                         <Sparklines data={this.state.cc1Prices} limit={9} height={100} width={300}>
-                            <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
+                            <SparklinesLine style={{ stroke: "#17a2b8", fill: "none"}} />
                             <SparklinesSpots />
                         </Sparklines>
-                        <hr/>
-                        <Card.Subtitle>Current Price</Card.Subtitle>
-                        <Card.Text>£{this.state.cc1CurrentPrice.toFixed(2)}</Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        <Card.Subtitle>Current Price</Card.Subtitle>
+                        <Card.Text>£{this.state.cc1Prices[9].toFixed(2)}</Card.Text>
+                    </Card.Footer>
                 </Card>
             </Col>
             <Col sm>
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">{this.state.cc2Name}</Card.Header>
                     <Card.Body>
                         <Card.Subtitle>Trend Graph</Card.Subtitle>
                         <Sparklines data={this.state.cc2Prices} limit={9} height={100} width={300}>
-                            <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
+                            <SparklinesLine style={{ stroke: "#17a2b8", fill: "none"}} />
                             <SparklinesSpots />
                         </Sparklines>
-                        <hr/>
-                        <Card.Subtitle>Current Price</Card.Subtitle>
-                        <Card.Text>£{this.state.cc2CurrentPrice.toFixed(2)}</Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        <Card.Subtitle>Current Price</Card.Subtitle>
+                        <Card.Text>£{this.state.cc2Prices[9].toFixed(2)}</Card.Text>
+                    </Card.Footer>
                 </Card>
             </Col>
             <Col sm>  
-                <Card>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header  as="h6">{this.state.cc3Name}</Card.Header>
                     <Card.Body>
                         <Card.Subtitle>Trend Graph</Card.Subtitle>
                         <Sparklines data={this.state.cc3Prices} limit={9} height={100} width={300}>
-                            <SparklinesLine style={{ stroke: "#2991c8", fill: "none"}} />
+                            <SparklinesLine style={{ stroke: "#17a2b8", fill: "none"}} />
                             <SparklinesSpots />
                         </Sparklines>
-                        <hr/>
-                        <Card.Subtitle>Current Price</Card.Subtitle>
-                        <Card.Text>£{this.state.cc3CurrentPrice.toFixed(2)}</Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        <Card.Subtitle>Current Price</Card.Subtitle>
+                        <Card.Text>£{this.state.cc3Prices[9].toFixed(2)}</Card.Text>
+                    </Card.Footer>
                 </Card>
             </Col>
         </Row>

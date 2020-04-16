@@ -20,7 +20,6 @@ import Transfer from './dashboardComponents/Transfer'
 import Overview from './dashboardComponents/Overview'
 import Messaging from './dashboardComponents/Messaging'
 
-
 export class Dashboard extends Component {
     state = {
         cc1 : cc1.getCC1(),
@@ -104,37 +103,37 @@ export class Dashboard extends Component {
         return (
             this.state.loaded && profile.isLoaded ?
             <div>
-                <Navigationbar pass={() => this.setModalShow(true)} />
+                <Navigationbar place="dashboard" pass={() => this.setModalShow(true)} />
                 <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
                 <br></br>
                 <Tab.Container unmountOnExit defaultActiveKey="first">
                     <Row style={{marginRight : "0px"}}>
                         <Col sm={3}>
-                            <Nav variant="pills" className="ml-1 flex-column">
+                            <Nav border="primary" variant="pills" className="ml-1 flex-column">
                                 <Nav.Item>
-                                    <Nav.Link eventKey="first">Overview</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="first">Overview</Nav.Link>
                                 </Nav.Item>
                                 {profile.premium &&
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Message An Analyst</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="second">Message An Analyst</Nav.Link>
                                 </Nav.Item>
                                 }
                                 <br />
                                 <Nav.Item>
-                                    <Nav.Link eventKey="third">Buy Cryptocurrency</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="third">Buy Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="fourth">Sell Cryptocurrency</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="fourth">Sell Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="fifth">Transfer Cryptocurrency</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="fifth">Transfer Cryptocurrency</Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>
                         <Col sm={9} className="mobilealign">
                             <div>
                             <Tab.Content>
-                                <Tab.Pane eventKey="first">
+                                <Tab.Pane className="main" eventKey="first">
                                     <OverviewAlert profile = {profile} finalData= {this.state.finalData} />
                                     <Overview  profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>

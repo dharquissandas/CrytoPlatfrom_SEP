@@ -51,7 +51,7 @@ export class ImportWallets extends Component {
                 this.setState({ 
                     imported : true,
                     importcheck : true,
-                    message : "Unautherised Import"
+                    message : "Unauthorised Import"
                 })
             }
         }
@@ -65,10 +65,10 @@ export class ImportWallets extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
-                <Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">Import Wallet</Card.Header>
                     <Card.Body>
                         <h6>Please Import your wallet</h6>

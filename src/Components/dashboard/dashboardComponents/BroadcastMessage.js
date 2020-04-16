@@ -33,7 +33,7 @@ export class BroadcastMessage extends Component {
     render() {
         return (
             <div>
-            <Card>
+            <Card bg="dark" text="white" border="info">
                 <Card.Header as="h6">Broadcast Message</Card.Header>
                 <Card.Body>
                     <Form autocomplete="off" id="broadcast" onSubmit={this.handleSubmit}>
@@ -49,7 +49,7 @@ export class BroadcastMessage extends Component {
                     {this.state.check ? <Alert variant="success">{this.state.message}</Alert> : null }
                 </Card.Body>
                 <Card.Footer>
-                    <Button type="submit" form="broadcast" variant="success">Broadcast</Button>
+                    <Button type="submit" form="broadcast" variant="info">Broadcast</Button>
                 </Card.Footer>
             </Card>
             </div>

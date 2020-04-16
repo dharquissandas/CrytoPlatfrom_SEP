@@ -37,7 +37,7 @@ export class Upgrade extends Component {
         }   
         else if(!this.state.check){
             this.setState({
-                message: "Acknowledgment Compulsory",
+                message: "Acknowledgement Compulsory",
                 error : true
             })
         }
@@ -59,13 +59,18 @@ export class Upgrade extends Component {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                style={{borderRight:" 1px solid rgba(0,0,0,.125)", borderLeft:" 1px solid rgba(0,0,0,.125)" }}
                 >
-                    <Modal.Header closeButton>
+                    <Modal.Header   style={{background:"#32383e", 
+                                            color:"#fff",
+                                            borderBottom:" 1px solid rgba(0,0,0,.125)",
+                                            borderTop:" 1px solid rgba(0,0,0,.125)"
+                                            }} closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Premium Trader Upgrade
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{background:"#343a40", color:"#fff"}}>
                         <h6>Please enter the details of the card displayed below for verification</h6>
                         <Alert variant="dark">
                             Bank Account Number : {accountNumber}
@@ -91,11 +96,11 @@ export class Upgrade extends Component {
                         
                         {this.state.error ? <Alert variant="danger">{this.state.message}</Alert> : null}
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer style={{background:"#32383e", color:"#fff", borderTop:"1px solid rgba(0,0,0,.125)"}}>
                         <Form.Group>
-                            <Button form="fiatRefund" type="submit" variant="success" onClick={this.handleSubmit}>Upgrade</Button>
+                            <Button form="fiatRefund" type="submit" variant="info" onClick={this.handleSubmit}>Upgrade</Button>
                         </Form.Group>
-                        <Button onClick={this.props.onHide}>Close</Button>
+                        <Button variant="outline-info" onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

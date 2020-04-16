@@ -62,12 +62,15 @@ export class AccountInformation extends Component {
         let auth = this.props.auth
         return ( 
             <div>
-                <Alert variant="dark">
-                    <Alert.Heading as="h5">At A Glance</Alert.Heading>
+                <Card bg="dark" text="white" border="info" >
+                    <Card.Header as="h6">At A Glance</Card.Header>
+                    <Card.Body style={{padding:"0.8em", paddingLeft:"1.25rem"}}>
                     {profile.firstname} {profile.lastname} - {this.accountType(profile.account,profile.premium)} <br></br>
                     {auth.email}
-                </Alert>
-                <Card>
+                    </Card.Body>
+                </Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">Account Information</Card.Header>
                     <Card.Body>
                         <Form autoComplete="off" id="updateinfo" onSubmit ={this.handleSubmit}>
@@ -95,17 +98,17 @@ export class AccountInformation extends Component {
                     : null}
                     </Card.Body>
                     <Card.Footer>
-                    <Button variant="success" form="updateinfo" type="submit">Update</Button>
+                    <Button variant="info" form="updateinfo" type="submit">Update</Button>
                     </Card.Footer>
                 </Card>
                 {this.props.profile.premium && 
-                <Card className="mt-1">
+                <Card  bg="dark" text="white" border="info" className="mt-3">
                     <Card.Header as="h6">Unsubscribe From Premium</Card.Header>
                     <Card.Body>
                         <p>Unsubscribing from premium will mean that you will lose broadcast and messaging ability from the helpful analysts.</p>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="danger" form="updateinfo" type="submit" onClick= {this.unsub}>Unsubscribe</Button>
+                        <Button variant="info" form="updateinfo" type="submit" onClick= {this.unsub}>Unsubscribe</Button>
                     </Card.Footer>
                 </Card>                
                 }

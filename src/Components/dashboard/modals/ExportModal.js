@@ -27,21 +27,26 @@ export class ExportModal extends Component{
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                style={{borderRight:" 1px solid rgba(0,0,0,.125)", borderLeft:" 1px solid rgba(0,0,0,.125)" }}
                 >
-                    <Modal.Header closeButton>
+                    <Modal.Header   style={{background:"#32383e", 
+                        color:"#fff",
+                        borderBottom:" 1px solid rgba(0,0,0,.125)",
+                        borderTop:" 1px solid rgba(0,0,0,.125)"
+                        }} closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
                             Export Wallet
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body  style={{background:"#343a40", color:"#fff"}}>
                         <h5>Warning</h5>
                         <p>Exporting the chosen cryptocurrency wallet will remove it from your online store. Please keep the wallet safe.</p>
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer style={{background:"#32383e", color:"#fff", borderTop:"1px solid rgba(0,0,0,.125)"}}>
                         <Form.Group>
-                            <Button type="submit" variant="success" onClick={() => this.filegen(this.props.chosencc)}>Export</Button>
+                            <Button type="submit" variant="info" onClick={() => this.filegen(this.props.chosencc)}>Export</Button>
                         </Form.Group>
-                        <Button onClick={this.props.onHide}>Close</Button>
+                        <Button variant="outline-info" onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

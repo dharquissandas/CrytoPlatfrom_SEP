@@ -28,7 +28,7 @@ export class Profile extends Component {
         return (
             profile.isLoaded ?
             <div>
-                <Navigationbar pass={() => this.setModalShow(true)} />
+                <Navigationbar place="profile" pass={() => this.setModalShow(true)} />
                 {profile.account === "trader" &&
                     <Upgrade show={this.state.modalShow} onHide={() => this.setModalShow(false)} />
                 }
@@ -38,15 +38,15 @@ export class Profile extends Component {
                         <Col sm={3}>
                         <Nav variant="pills" className="ml-1 flex-column">
                             <Nav.Item>
-                                <Nav.Link eventKey="first">Account Information</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="first">Account Information</Nav.Link>
                             </Nav.Item>
                             {profile.account === "trader" &&
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Payment Card Information</Nav.Link>
+                                    <Nav.Link className="navitems" eventKey="second">Payment Card Information</Nav.Link>
                                 </Nav.Item>
                             }
                             <Nav.Item>
-                                <Nav.Link eventKey="third">Security Information</Nav.Link>
+                                <Nav.Link className="navitems" eventKey="third">Security Information</Nav.Link>
                             </Nav.Item>
                         </Nav>
                         </Col>

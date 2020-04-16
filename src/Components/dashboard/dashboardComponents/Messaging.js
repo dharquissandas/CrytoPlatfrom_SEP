@@ -36,7 +36,7 @@ export class Messaging extends Component {
             <div>
                 <Row>
                     <Col sm>
-                        <Card>
+                        <Card bg="dark" text="white" border="info">
                             <Card.Header as="h6">Message An Analyst</Card.Header>
                             <Card.Body>
                                 <Form id="messageform" onSubmit={this.handleSubmit}>
@@ -47,19 +47,20 @@ export class Messaging extends Component {
                                 </Form>
                             </Card.Body>
                             <Card.Footer>
-                                <Button variant="success" type="submit" form="messageform">Send</Button>
+                                <Button variant="info" type="submit" form="messageform">Send</Button>
                             </Card.Footer>
                         </Card>
                     </Col>
                     <Col sm>
                         {!this.state.userMessages || this.state.userMessages.length === 0 ?
-                            <Alert variant="dark">No Messages</Alert> 
+                            <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">No Messages</Card.Body></Card> 
                             :
                             <div>
-                            <Alert variant="dark">Messages</Alert>
+                            <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Messages</Card.Body></Card> 
+                            <br></br>
                             {this.state.userMessages !== null && this.state.userMessages.slice(0,10).map(item => {
                                 return(
-                                <Card className="notif">
+                                <Card bg="dark" text="white" border="info" className="notif">
                                     <Card.Header className="notifHeader">
                                     <strong className="mr-auto">
                                         {

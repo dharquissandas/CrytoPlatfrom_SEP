@@ -12,13 +12,14 @@ const SignedInLinks = (props) => {
         <div>
             <Nav>
                 {props.profile.account === "trader" && !props.profile.premium &&
-                <Nav.Link onClick={() => props.pass()} >Upgrade To Premium</Nav.Link>}
+                <Nav.Link className="navstyle" onClick={() => props.pass()} >Upgrade To Premium</Nav.Link>}
                 {(props.profile.account === "trader" && props.profile.premium) &&
                 <OverlayTrigger
                 trigger="click"
                 key="bottom"
                 placement="bottom"
                 rootClose
+                style={{borderRight:" 1px solid rgba(0,0,0,.125)", borderLeft:" 1px solid rgba(0,0,0,.125)" }}
                 overlay={
                 <Popover id={`popover-positioned-bottom`}>
                     <Popover.Title as="h3">{`Daily Broadcasts`}</Popover.Title>
@@ -37,6 +38,7 @@ const SignedInLinks = (props) => {
                 key="bottom"
                 placement="bottom"
                 rootClose
+                style={{borderRight:" 1px solid rgba(0,0,0,.125)", borderLeft:" 1px solid rgba(0,0,0,.125)" }}
                 overlay={
                 <Popover id={`popover-positioned-bottom`}>
                     <Popover.Title as="h3">{`Daily Broadcasts`}</Popover.Title>
@@ -45,16 +47,32 @@ const SignedInLinks = (props) => {
                     </Popover.Content>
                 </Popover>
                 }>
-                    <Nav.Link>Broadcasts</Nav.Link>
+                    <Nav.Link  >Broadcasts</Nav.Link>
                 </OverlayTrigger>
                 }
 
-                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                {props.profile.account === "trader" &&
-                    <Nav.Link href="/wallet">Wallet</Nav.Link>
+                {props.place === "dashboard" ?
+                    <Nav.Link disabled  href="/dashboard">Dashboard</Nav.Link>
+                    :
+                    <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                 }
-                <Nav.Link href="/profile">Profile</Nav.Link>
-                <Nav.Link onClick={props.signOut}>Logout</Nav.Link>
+
+                {props.profile.account === "trader" ?
+                        props.place === "wallet"?
+                        <Nav.Link disabled href="/wallet">Wallet</Nav.Link>
+                        :
+                        <Nav.Link href="/wallet">Wallet</Nav.Link>
+                        :
+                        null
+                }
+
+                {props.place === "profile" ?
+                    <Nav.Link disabled  href="/profile">Profile</Nav.Link>
+                    :
+                    <Nav.Link  href="/profile">Profile</Nav.Link>
+                }
+            
+                <Nav.Link className="navstyle" onClick={props.signOut}>Logout</Nav.Link>
             </Nav>
         </div>
     )

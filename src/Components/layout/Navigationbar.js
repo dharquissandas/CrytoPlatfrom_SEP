@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 
 const Navigationbar = (props) => {
     const { auth } = props;
-    const links = auth.uid ? <SignedInLinks profile={props.profile} pass = {props.pass} /> : < SignedOutLinks />
+    const links = auth.uid ? <SignedInLinks place={props.place} profile={props.profile} pass = {props.pass} /> : < SignedOutLinks />
     return (
         <div>
             <Navbar fixed="top" bg="dark" variant="dark" expand="lg">

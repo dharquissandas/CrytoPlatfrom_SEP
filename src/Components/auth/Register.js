@@ -80,7 +80,7 @@ class Register extends Component {
         return (
             <div>
                 <Container>
-                    <Card className="authcard">
+                    <Card bg="dark" text="white" border="info" className="authcard">
                     <Card.Header as="h5">CryptoTrading &amp; Wallet</Card.Header>
                         <Card.Body>
                             <Container>
@@ -186,7 +186,7 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
-                                                {authError && authError !== "Login Failed" ? <Alert variant="danger">{authError}</Alert> : null}
+                                                {authError && authError !== "Login Failed" || this.state.issue ? <Alert variant="danger">{authError}</Alert> : null}
                                                 {this.state.issue ? <Alert variant="danger">{this.state.checkresult}</Alert> : null}
                                             </div>
                                         </Form>
@@ -195,11 +195,11 @@ class Register extends Component {
                             </Container>
                         </Card.Body>
                         <Card.Footer>
-                            <Button variant="success" form="register" type="submit">Register</Button>
+                            <Button variant="info" form="register" type="submit">Register</Button>
                             <div id="right">
                                 <span className="size mr-2" >Already Have An Account?</span>
                                 <Link to="/">
-                                    <Button type="submit">Sign In</Button>
+                                    <Button variant="outline-info" type="submit">Sign In</Button>
                                 </Link>
                             </div>
                         </Card.Footer>

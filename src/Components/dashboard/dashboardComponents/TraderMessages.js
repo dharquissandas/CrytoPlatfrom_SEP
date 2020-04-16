@@ -33,13 +33,14 @@ export class TraderMessages extends Component {
                 <Row>
                     <Col sm>
                         {!this.state.nCheckedMessages || this.state.nCheckedMessages.length === 0 ?
-                            <Alert variant="dark">No Messages</Alert> 
+                        <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">No Messages</Card.Body></Card>
                             :
                             <div>
-                            <Alert variant="dark">Premium Trader Messages</Alert>
+                            <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Premium Trader Messages</Card.Body></Card>        
+                            <br></br>                        
                             {this.state.nCheckedMessages.map(item => {
                                 return(
-                                <Card className="notif">
+                                <Card bg="dark" text="white" border="info" className="notif">
                                     <Card.Header className="notifHeader">
                                     <strong className="mr-auto">
                                         {
@@ -54,8 +55,8 @@ export class TraderMessages extends Component {
                                     <Card.Body style={{display:"flex"}} className="notifBody">
                                     Recent Message : {item.userMessages[0].message}
                                     <div className="ml-auto">
-                                        <Button variant="primary" onClick = {() => this.handleReply(item.userId)}>Reply</Button>
-                                        <Button className="ml-1" variant="danger" onClick = {() => this.handleClose(item.userId)} >Close</Button>
+                                        <Button variant="info" onClick = {() => this.handleReply(item.userId)}>Reply</Button>
+                                        <Button className="ml-1" variant="outline-info" onClick = {() => this.handleClose(item.userId)} >Close</Button>
                                     </div>
                                     </Card.Body>
                                 </Card>

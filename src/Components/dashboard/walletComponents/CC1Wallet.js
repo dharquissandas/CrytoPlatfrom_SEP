@@ -21,7 +21,7 @@ export class cc1Wallet extends Component {
         return (
             <Row>
                 <Col sm>
-                <Card className="mb-3">
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">
                         {cc1.getName()}
                     </Card.Header> 
@@ -33,7 +33,8 @@ export class cc1Wallet extends Component {
                         <Card.Text>£{cc1.getCurrentPrice().toFixed(2)}</Card.Text>
                     </Card.Body>
                 </Card>
-                <Card>
+                <br></br>
+                <Card bg="dark" text="white" border="info">
                     <Card.Header as="h6">
                         Export
                     </Card.Header> 
@@ -41,15 +42,16 @@ export class cc1Wallet extends Component {
                         <Card.Text>This will create a file that is downloaded for safe keeping and the subsequent wallet will be removed from our system.</Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button variant="success" onClick= {this.handleClick}>Export</Button>
+                        <Button variant="info" onClick= {this.handleClick}>Export</Button>
                     </Card.Footer>
                 </Card>
                 </Col>
                 <Col sm>
-                    <Alert variant="secondary"><h6>Wallet History - Last 10 Transactions</h6></Alert>
+                    <Card bg="dark" text="white" border="info"><Card.Body className="messagingTitle">Wallet History - Last 10 Transactions</Card.Body></Card> 
+                    <br></br>
                     {data.cc1Transactions && data.cc1Transactions.slice(0,10).map(item => {
                         return(
-                            <Card className="notif" variant="dark" key={item.id}>
+                            <Card bg="dark" text="white" border="info" className="notif" key={item.id}>
                                 <Card.Header className="notifHeader">
                                 <strong  className="mr-auto">{this.renderText(item.transactionType)}</strong>
                                 <small>{moment(item.timestamp.toDate()).calendar()}</small>
@@ -57,8 +59,11 @@ export class cc1Wallet extends Component {
                                 <Card.Body className="notifBody">
                                 <p>Amount: {item.purchasedAmount}</p>
                                 {item.transactionType === "transfer" ? 
-                                <p>Recipent: {item.recipientemail} </p> :
-                                <p>Purchase Price: £{item.purchasePrice.toFixed(2)} </p>
+                                <div>
+                                    <p>Sender: {item.senderemail}</p>
+                                    <p>Recipent: {item.recipientemail} </p>
+                                </div> :
+                                <p>Price: £{item.purchasePrice.toFixed(2)} </p>
                                 }
                                 </Card.Body>
                             </Card>
