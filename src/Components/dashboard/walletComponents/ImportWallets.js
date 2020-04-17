@@ -37,6 +37,7 @@ export class ImportWallets extends Component {
                                 importcheck : true,        
                                 message : "Successfully Imported"
                             })
+                            window.location.reload()
                     }, 800);
                 }
                 else{

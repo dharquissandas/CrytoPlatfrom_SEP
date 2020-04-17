@@ -69,7 +69,7 @@ export class SearchTransactions extends Component {
                     </Card.Header>
                     <Card.Body>
                         <Form id="search" autocomplete="off" onSubmit={this.handleSubmit}>
-                            <Form.Group>
+                            <Form.Group id="search">
                                 <Form.Label>Broadcasting Analyst</Form.Label>
                                 <Search items={items}
                                     placeholder='Search Email of Recipient'

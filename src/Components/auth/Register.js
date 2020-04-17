@@ -22,7 +22,8 @@ class Register extends Component {
         adminAccessCode: "",
         checkresult: "",
         idProof: "",
-        issue: false
+        issue: false,
+        readautherror : true
     }
 
     handleChange = (e) => {
@@ -34,7 +35,8 @@ class Register extends Component {
     handleSubmit = (e) => {
         this.setState({
             checkresult : "",
-            issue : false
+            issue : false,
+            readautherror : true
         })
         let account = this.state.account
         let adminAccessCode = this.state.adminAccessCode
@@ -73,13 +75,22 @@ class Register extends Component {
 
     handleAccountChoice = (e) => {
         this.setState({
-          account: e.target.value
+            account: e.target.value,
+            issue: false,
+            checkresult : ""
         });
+
+        if(this.props.authError){
+            this.setState({
+                readautherror : false
+            })
+        }
       };
       
 
     render() {
         const { auth, authError } = this.props;
+        console.log(this.state)
         if (auth.uid) return <Redirect to="/dashboard" />
         return (
             <div>
@@ -190,10 +201,10 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
-                                                {(this.state.issue && this.props.authError) || this.state.issue &&
+                                                {(this.state.issue && this.props.authError) &&
                                                     <Alert variant="danger">{this.state.checkresult}</Alert>
                                                 }
-                                                {!this.state.issue && this.props.authError && 
+                                                {!this.state.issue && this.props.authError && this.state.readautherror && 
                                                     <Alert variant="danger">{this.props.authError}</Alert>
                                                 }
                                             </div>

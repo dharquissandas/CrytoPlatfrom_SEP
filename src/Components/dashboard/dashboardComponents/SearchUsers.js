@@ -77,7 +77,7 @@ export class SearchUsers extends Component {
                     <Card.Body>
                         <h6>To search for user, atleast one of the fields below must be filled </h6>
                         <Form autocomplete="off" id="users" onSubmit={this.handleSubmit}>
-                            <Form.Group>
+                            <Form.Group id="search">
                                 <Form.Label>User Quick Search</Form.Label>
                                 <Search items={items}
                                     placeholder='Search email of Recipient'
