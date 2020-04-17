@@ -7,9 +7,9 @@ import FileUploader from 'file-uploader-js';
 
 export class ImportWallets extends Component {
     state = {
-        imported : false,
+        imported : true,
         importcheck : false,
-        message : "",
+        message : "Successfully Imported",
         tcheck : false
     }
 
@@ -33,10 +33,10 @@ export class ImportWallets extends Component {
                     }
                     setTimeout(() => {
                             this.setState({
-                                imported : true,        
-                                message : "Successfully Imported, Please wait a short while for the import to be reflected"
+                                imported : true,
+                                importcheck : true,        
+                                message : "Successfully Imported"
                             })
-                            window.location.reload()
                     }, 800);
                 }
                 else{
@@ -82,8 +82,11 @@ export class ImportWallets extends Component {
                         </Alert>
                         {this.state.imported ?
                             this.state.importcheck ?
-                            <Alert variant="danger">{this.state.message}</Alert> :
-                            <Alert variant="success">{this.state.message}</Alert>
+                                this.state.message === "Successfully Imported" ?
+                            <Alert variant="success">{this.state.message}</Alert>:
+                            <Alert variant="danger">{this.state.message}</Alert>
+                            :
+                            null
                             :
                             null
                         }

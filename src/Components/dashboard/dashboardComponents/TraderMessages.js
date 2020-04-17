@@ -52,11 +52,14 @@ export class TraderMessages extends Component {
                                     </strong>
                                     <small>{moment(item.userMessages[0].timestamp.toDate()).calendar()}</small>
                                     </Card.Header>
-                                    <Card.Body style={{display:"flex"}} className="notifBody">
-                                    Recent Message : {item.userMessages[0].message}
-                                    <div className="ml-auto">
+                                    <Card.Body className="notifBody">
+                                    <div>
+                                        Recent Message : {item.userMessages[0].message}
+                                    </div>
+                                    <br></br>
+                                    <div style={{textAlign:"end"}}>
                                         <Button variant="info" onClick = {() => this.handleReply(item.userId)}>Reply</Button>
-                                        <Button className="ml-1" variant="outline-info" onClick = {() => this.handleClose(item.userId)} >Close</Button>
+                                        <Button className="ml-1" variant="outline-info" onClick = {() => this.handleClose(item.userId)} >End</Button>
                                     </div>
                                     </Card.Body>
                                 </Card>

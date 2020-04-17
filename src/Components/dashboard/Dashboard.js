@@ -134,7 +134,7 @@ export class Dashboard extends Component {
                             <div>
                             <Tab.Content>
                                 <Tab.Pane className="main" eventKey="first">
-                                    <OverviewAlert profile = {profile} finalData= {this.state.finalData} />
+                                    <OverviewAlert style={{marginTop:"20px"}} profile = {profile} finalData= {this.state.finalData} />
                                     <Overview  profile = {profile} finalData= {this.state.finalData} />
                                 </Tab.Pane>
                                 {profile.premium &&

@@ -32,6 +32,10 @@ class Register extends Component {
     }
 
     handleSubmit = (e) => {
+        this.setState({
+            checkresult : "",
+            issue : false
+        })
         let account = this.state.account
         let adminAccessCode = this.state.adminAccessCode
         let analystCertification = this.state.analystCertification
@@ -186,8 +190,12 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
-                                                {authError && authError !== "Login Failed" || this.state.issue ? <Alert variant="danger">{authError}</Alert> : null}
-                                                {this.state.issue ? <Alert variant="danger">{this.state.checkresult}</Alert> : null}
+                                                {(this.state.issue && this.props.authError) || this.state.issue &&
+                                                    <Alert variant="danger">{this.state.checkresult}</Alert>
+                                                }
+                                                {!this.state.issue && this.props.authError && 
+                                                    <Alert variant="danger">{this.props.authError}</Alert>
+                                                }
                                             </div>
                                         </Form>
                                     </Col>

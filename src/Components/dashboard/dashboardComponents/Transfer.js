@@ -52,7 +52,7 @@ export class Transfer extends Component {
         }
         else if(this.state.transfercryptocurrency === "Choose Cryptocurrency" || this.state.transfercryptocurrency === "" ){
             this.setState({
-                tranfercheck : true,
+                transfercheck : true,
                 transfermessage : "Please Select A Valid Cryptocurrency"
             })
         }
@@ -102,6 +102,7 @@ export class Transfer extends Component {
 
 
     render() {
+        console.log(this.state.transfermessage)
         const { auth, users } = this.props;
         let items = userData(users, auth.uid, "trader")
         return (

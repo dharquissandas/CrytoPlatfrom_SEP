@@ -188,6 +188,7 @@ export class FiatWallet extends Component {
                         </Card>
                     </Col>
                 </Row>
+                <br></br>
             </div>
         )
     }
