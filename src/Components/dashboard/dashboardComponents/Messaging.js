@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Card, Row, Col, Form, Button } from 'react-bootstrap'
+import { Card, Row, Col, Form, Button } from 'react-bootstrap'
 import { idSearch, idMessageSearch } from '../../utils/DashboardUtils'
 import moment from 'moment'
 

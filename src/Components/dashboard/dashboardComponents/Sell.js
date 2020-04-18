@@ -54,16 +54,19 @@ export class Sell extends Component {
             if(cc === this.state.cc1Name){
                 salePrice = this.state.cc1CurrentPrice
                 totalPrice = this.state.sellamount * this.state.cc1CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
                 totalPrice = "" + totalPrice
             }
             else if(cc === this.state.cc2Name){
                 salePrice = this.state.cc2CurrentPrice
                 totalPrice = this.state.sellamount * this.state.cc2CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
                 totalPrice = "" + totalPrice
             }
             else{
                 salePrice = this.state.cc3CurrentPrice
                 totalPrice = this.state.sellamount * this.state.cc3CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
                 totalPrice = "" + totalPrice
             }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Card, Form, Button } from 'react-bootstrap'
+import { Card, Form, Button } from 'react-bootstrap'
 import { idSearch, idMessageSearch } from '../../utils/DashboardUtils'
 import moment from 'moment'
 import { connect } from 'react-redux';
@@ -28,7 +28,7 @@ export class MessageList extends Component {
             timestamp : new Date()
         }
 
-        this.props.message(this.props.messages,a);
+        this.props.message(idMessageSearch(this.props.allMessages, this.props.senderId),a);
         document.getElementById("messageform").reset();
 
     }

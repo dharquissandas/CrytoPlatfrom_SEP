@@ -54,14 +54,17 @@ export class Buy extends Component {
             if(cc === this.state.cc1Name){
                 purchasePrice = this.state.cc1CurrentPrice
                 totalPrice = this.state.buyamount * this.state.cc1CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
             }
             else if(cc === this.state.cc2Name){
                 purchasePrice = this.state.cc2CurrentPrice
                 totalPrice = this.state.buyamount * this.state.cc2CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
             }
             else{
                 purchasePrice = this.state.cc3CurrentPrice
                 totalPrice = this.state.buyamount * this.state.cc3CurrentPrice
+                totalPrice = totalPrice.toFixed(2)
             }
 
             let transactionState = {

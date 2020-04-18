@@ -58,9 +58,9 @@ export class FiatWallet extends Component {
             })
         }
         else{
-            document.getElementById("ramount").value = this.props.profile.fiatAmount
+            document.getElementById("ramount").value = "" + parseFloat(this.props.profile.fiatAmount).toFixed(2)
             this.setState({
-                ramount : this.props.profile.fiatAmount
+                ramount : "" + parseFloat(this.props.profile.fiatAmount).toFixed(2)
             })
         }
     }

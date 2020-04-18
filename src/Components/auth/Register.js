@@ -6,8 +6,6 @@ import {otherSignUp, traderSignUp} from '../store/actions/authActions'
 import {Link} from 'react-router-dom'
 import '../../Styles/auth.css'
 
-
-
 class Register extends Component {
     state = {
         account: "",
@@ -89,7 +87,7 @@ class Register extends Component {
       
 
     render() {
-        const { auth, authError } = this.props;
+        const { auth } = this.props;
         console.log(this.state)
         if (auth.uid) return <Redirect to="/dashboard" />
         return (
@@ -201,6 +199,9 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
+                                                {this.state.issue && 
+                                                    <Alert variant="danger">{this.state.checkresult}</Alert>
+                                                }
                                                 {(this.state.issue && this.props.authError) &&
                                                     <Alert variant="danger">{this.state.checkresult}</Alert>
                                                 }

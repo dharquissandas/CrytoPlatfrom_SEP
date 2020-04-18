@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Col, Row, Button, Card } from 'react-bootstrap' 
+import { Col, Row, Button, Card } from 'react-bootstrap' 
 import { cc1 } from '../../cryptocurrencies/cc1'
 import { cc2 } from '../../cryptocurrencies/cc2'
 import { cc3 } from '../../cryptocurrencies/cc3'
