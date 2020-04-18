@@ -199,7 +199,7 @@ class Register extends Component {
                                                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
-                                                {this.state.issue && 
+                                                {this.state.issue && !this.props.authError &&
                                                     <Alert variant="danger">{this.state.checkresult}</Alert>
                                                 }
                                                 {(this.state.issue && this.props.authError) &&
