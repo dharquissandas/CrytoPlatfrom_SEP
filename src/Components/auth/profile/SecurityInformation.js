@@ -63,12 +63,12 @@ export class SecurityInformation extends Component {
                         <Form autocomplete="off" id="id" onSubmit ={this.handleSubmit}>
                             <Form.Group controlId="oldidProof">
                                 <Form.Label>Previous Proof of ID</Form.Label>
-                                <Form.Control type="text" maxLength="9" minLength="9"  pattern="[0-9]{9}" placeholder="Previous Passport Identification Number" onChange={this.handleChange} />
+                                <Form.Control type="text" maxLength="9" minLength="9" required pattern="[0-9]{9}" placeholder="Previous Passport Identification Number" onChange={this.handleChange} />
                             </Form.Group>
                                 
                             <Form.Group controlId="idProof">
                                 <Form.Label>Proof of ID</Form.Label>
-                                <Form.Control type="text" maxLength="9" minLength="9" pattern="[0-9]{9}" placeholder="Passport Identification Number" onChange={this.handleChange} />
+                                <Form.Control type="text" maxLength="9" minLength="9" required pattern="[0-9]{9}" placeholder="Passport Identification Number" onChange={this.handleChange} />
                             </Form.Group>
                         </Form>
                         {this.state.check  ? 

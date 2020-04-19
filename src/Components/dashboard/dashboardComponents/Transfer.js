@@ -102,7 +102,6 @@ export class Transfer extends Component {
 
 
     render() {
-        console.log(this.state.transfermessage)
         const { auth, users } = this.props;
         let items = userData(users, auth.uid, "trader")
         return (

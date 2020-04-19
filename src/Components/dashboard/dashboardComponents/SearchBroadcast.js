@@ -12,6 +12,7 @@ export class SearchTransactions extends Component {
         check : false,
         message : "",
         results : null,
+        recheck : null,
         resultscheck : false,
         deletecheck : false
     }
@@ -38,15 +39,27 @@ export class SearchTransactions extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        let a = {
-            analyst : findUser(this.props.auth.uid,this.props.users,this.state.analyst, "analyst"),
-            startDate : this.state.startDate,
-            endDate : this.state.endDate
+        if(this.state.analyst == null){
+            this.setState({
+                recheck : true,
+                message : "Please Select An Analyst"
+            })
         }
-        this.setState({
-            results : bSearch(this.props.broadcasts, a),
-            resultscheck : true
-        })
+        else{
+            this.setState({
+                recheck : false,
+                message : ""
+            })
+            let a = {
+                analyst : findUser(this.props.auth.uid,this.props.users,this.state.analyst, "analyst"),
+                startDate : this.state.startDate,
+                endDate : this.state.endDate
+            }
+            this.setState({
+                results : bSearch(this.props.broadcasts, a),
+                resultscheck : true
+            })
+        }
     }
 
     handleDelete = (uid, e) =>{
@@ -72,7 +85,7 @@ export class SearchTransactions extends Component {
                             <Form.Group id="search">
                                 <Form.Label>Broadcasting Analyst</Form.Label>
                                 <Search items={items}
-                                    placeholder='Search Email of Recipient'
+                                    placeholder='Search Email'
                                     maxSelected={1}
                                     multiple={true}
                                     autocomplete="off"
@@ -92,6 +105,9 @@ export class SearchTransactions extends Component {
                             </Form.Row>
                         {this.state.deletecheck && 
                             <Alert variant="success">Successfully Deleted</Alert>
+                        }
+                        {this.state.recheck && 
+                            <Alert variant="danger">{this.state.message}</Alert>
                         }
                         </Form>
                     </Card.Body>    

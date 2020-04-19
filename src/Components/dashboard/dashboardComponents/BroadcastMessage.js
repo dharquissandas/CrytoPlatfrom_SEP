@@ -39,11 +39,11 @@ export class BroadcastMessage extends Component {
                     <Form autocomplete="off" id="broadcast" onSubmit={this.handleSubmit}>
                         <Form.Group controlId="broadcastTitle">
                             <Form.Label>Broadcast Title</Form.Label>
-                            <Form.Control required type="text" min="2" placeholder="Title" onChange={this.handleChange} />
+                            <Form.Control required type="text" minLength="2" maxLength="30" placeholder="Title" onChange={this.handleChange} />
                         </Form.Group>
                         <Form.Group controlId="broadcastMessage">
                             <Form.Label>Broadcast Content</Form.Label>
-                            <Form.Control required as="textarea" min="2" rows="3" placeholder="Content" onChange={this.handleChange} />
+                            <Form.Control required as="textarea" minLength="2" maxLength="250" rows="3" placeholder="Content" onChange={this.handleChange} />
                         </Form.Group>
                     </Form>
                     {this.state.check ? <Alert variant="success">{this.state.message}</Alert> : null }

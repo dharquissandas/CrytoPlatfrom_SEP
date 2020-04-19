@@ -10,7 +10,7 @@ const Navigationbar = (props) => {
     return (
         <div>
             <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
-            <Navbar.Brand href="/">CryptoTrading &amp; Wallet</Navbar.Brand>
+            <Navbar.Brand>CryptoTrading &amp; Wallet</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">

@@ -5,6 +5,10 @@ import { Export } from '../../store/actions/transactionActions'
 
 export class ExportModal extends Component{
     filegen = async (cc) => {
+
+        let button = document.getElementById("button")
+        button.disabled = true;
+        
         const fileName = "wallet";
         const json = JSON.stringify(cc);
         const blob = new Blob([json],{type:'application/json'});
@@ -44,7 +48,7 @@ export class ExportModal extends Component{
                     </Modal.Body>
                     <Modal.Footer style={{background:"#32383e", color:"#fff", borderTop:"1px solid rgba(0,0,0,.125)"}}>
                         <Form.Group>
-                            <Button type="submit" variant="info" onClick={() => this.filegen(this.props.chosencc)}>Export</Button>
+                            <Button type="submit" variant="info" id="button" onClick={() => this.filegen(this.props.chosencc)}>Export</Button>
                         </Form.Group>
                         <Button variant="outline-info" onClick={this.props.onHide}>Close</Button>
                     </Modal.Footer>

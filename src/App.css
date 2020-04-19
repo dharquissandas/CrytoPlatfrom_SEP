@@ -107,8 +107,16 @@ body{
 .popover-body{
     background: #343a40;
     border-right: 1px solid rgba(0,0,0,.125);
+    border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
+.bs-popover-bottom>.arrow::after{
+    border-bottom-color:rgba(0,0,0,.125);
+}
+
+.bs-popover-bottom .popover-header::before {
+    border-bottom-color:rgba(0,0,0,.125);
+}
 
 html {
     --scrollbarBG: #141721;
