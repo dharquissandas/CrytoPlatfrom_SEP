@@ -34,7 +34,7 @@ class Register extends Component {
         this.setState({
             checkresult : "",
             issue : false,
-            readautherror : true
+            readautherror : false
         })
         let account = this.state.account
         let adminAccessCode = this.state.adminAccessCode
@@ -63,9 +63,15 @@ class Register extends Component {
         else{
             if(account === "trader"){
                 this.props.traderSignUp(this.state)
+                this.setState({
+                    readautherror : true
+                })
             }
             else{
                 this.props.otherSignUp(this.state)
+                this.setState({
+                    readautherror : true
+                })
             }
         }
 
@@ -88,8 +94,9 @@ class Register extends Component {
 
     render() {
         const { auth } = this.props;
-        console.log(this.state)
         if (auth.uid) return <Redirect to="/dashboard" />
+        console.log(this.state)
+        console.log(this.props)
         return (
             <div>
                 <Container>
@@ -196,7 +203,7 @@ class Register extends Component {
 
                                             <Form.Group controlId="password">
                                                 <Form.Label>Password</Form.Label>
-                                                <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
+                                                <Form.Control type="password" minLength="6" placeholder="Password" onChange={this.handleChange} />
                                             </Form.Group>                               
                                             <div>
                                                 {this.state.issue && !this.props.authError &&

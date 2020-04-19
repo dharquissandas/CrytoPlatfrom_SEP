@@ -81,7 +81,7 @@ export class ImportWallets extends Component {
                                 }}
                                 />
                         </Alert>
-                        {this.state.imported ?
+                        {this.state.imported && this.state.message !== "" ?
                             this.state.importcheck ?
                                 this.state.message === "Successfully Imported" ?
                             <Alert variant="success">{this.state.message}</Alert>:
