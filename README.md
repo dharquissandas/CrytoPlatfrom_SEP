@@ -17,6 +17,6 @@ Ability to use the inbuilt messaging platform to communicate with the premium tr
 Ability to send a broadcast to all the premium members in one go so they are all able to get helpful hints and advice right on the dashboard
 ### Other features also present but not described here
 ## Administrators
-## Overseeing and managing accounts and transactions
+### Overseeing and managing accounts and transactions
 Ability to look at accounts and transactions to maintain correct information
 ### Other features also present but not described here
