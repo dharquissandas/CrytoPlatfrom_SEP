@@ -1,68 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project was introduced at university and the definition that was given to us as a group was the creation of a Cryptocurrency Platform Simulator. In this group project, I was responsible for the entire implementation. This is a web-based cryptocurrency platform programmed using React with the classic web development including bootstrap using a NOSQL database called Firebase.
+## Key Operations
+## Trader & Premium Trader
+### Buy and Sell Cryptocurrency
+As this was a simulator demo, I had created 3 cryptocurrencies that randomly varied in price and the user would be able to them purchase or sell their amount of cryptocurrency. This then allows them to have funds in their designated wallet.
+### Transfer Cryptocurrency
+Traders are able to transfer cryptocurrency between other traders.
+### Upgrade to Premium
+Traders are able to upgrade to a higher tier where they get help from analysts by using the inbuilt communication platform so they are able to make informed and targeted purchase and selling decisions.
+### Access to Wallet and import/export bought Cryptocurrencies 
+Traders have access to their wallets for each cryptocurrency and they are able to import and export the wallet onto their internet enabled device.
+### Other features also present but not described here
+## Analyst
+### Communicating with premium members
+Ability to use the inbuilt messaging platform to communicate with the premium traders so they are able to get premium quality help.
+### Broadcasts
+Ability to send a broadcast to all the premium members in one go so they are all able to get helpful hints and advice right on the dashboard
+### Other features also present but not described here
+## Administrators
+## Overseeing and managing accounts and transactions
+Ability to look at accounts and transactions to maintain correct information
+### Other features also present but not described here
